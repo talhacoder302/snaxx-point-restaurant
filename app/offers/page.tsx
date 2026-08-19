@@ -6,7 +6,7 @@ import OfferCard from "@/components/OfferCard";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import { offers } from "@/lib/offers";
+import { getOffers } from "@/lib/offers";
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
@@ -15,7 +15,8 @@ export const metadata: Metadata = {
     "Order exclusive offers and delicious deals at Snaxx Point Restaurant — fresh food at great prices, available now.",
 };
 
-export default function OffersPage() {
+export default async function OffersPage() {
+  const offers = await getOffers();
   const featuredOffer = offers.find((offer) => offer.featured);
   const regularOffers = offers.filter((offer) => !offer.featured);
 
