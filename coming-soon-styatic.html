@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Snaxx Point Restaurant | Coming Soon</title>
+  <meta
+    name="description"
+    content="Snaxx Point Restaurant — Something delicious is coming soon."
+  />
+
+  <meta name="theme-color" content="#111111" />
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23090909'/%3E%3Ctext x='50' y='69' text-anchor='middle' font-family='Arial,sans-serif' font-size='62' font-weight='900' fill='%23ff9d1c'%3ES%3C/text%3E%3C/svg%3E"/>
+
+  <style>
+    /* =========================================================
+       RESET
+    ========================================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #090909;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* =========================================================
+       BACKGROUND
+    ========================================================= */
+    .page {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(255, 159, 28, 0.15),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 85% 80%,
+          rgba(255, 77, 28, 0.12),
+          transparent 30%
+        );
+      pointer-events: none;
+    }
+
+    .noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.035;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    }
+
+    /* =========================================================
+       FLOATING DECORATIONS
+    ========================================================= */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(1px);
+    }
+
+    .orb.one {
+      width: 420px;
+      height: 420px;
+      top: -230px;
+      right: -170px;
+      border: 1px solid rgba(255, 159, 28, 0.18);
+      box-shadow:
+        0 0 100px rgba(255, 159, 28, 0.08),
+        inset 0 0 80px rgba(255, 159, 28, 0.05);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .orb.two {
+      width: 260px;
+      height: 260px;
+      bottom: -150px;
+      left: -100px;
+      border: 1px solid rgba(255, 95, 28, 0.14);
+      animation: float 10s ease-in-out infinite reverse;
+    }
+
+    .orb.three {
+      width: 80px;
+      height: 80px;
+      top: 28%;
+      left: 7%;
+      background: rgba(255, 159, 28, 0.04);
+      border: 1px solid rgba(255, 159, 28, 0.15);
+      animation: drift 7s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(25px) rotate(8deg);
+      }
+    }
+
+    @keyframes drift {
+      0%, 100% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(20px, -25px);
+      }
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+    header {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      padding: 30px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-mark {
+      width: 43px;
+      height: 43px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #ffb52b, #ff5b1a);
+      color: #111;
+      font-size: 20px;
+      font-weight: 900;
+      box-shadow: 0 10px 30px rgba(255, 104, 24, 0.25);
+    }
+
+    .logo-text {
+      font-size: 17px;
+      line-height: 1.05;
+    }
+
+    .logo-text span {
+      display: block;
+      color: #ff9d1c;
+      font-size: 10px;
+      margin-top: 4px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .header-contact {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(255, 255, 255, 0.035);
+      border-radius: 100px;
+      color: #ddd;
+      font-size: 13px;
+      transition: 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-contact:hover {
+      border-color: rgba(255, 159, 28, 0.4);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .phone-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #7dfc98;
+      box-shadow: 0 0 12px #7dfc98;
+    }
+
+    /* =========================================================
+       MAIN
+    ========================================================= */
+    main {
+      position: relative;
+      z-index: 5;
+      flex: 1;
+      width: 100%;
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 30px 6% 50px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 80px;
+    }
+
+    /* =========================================================
+       HERO CONTENT
+    ========================================================= */
+    .hero-content {
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      margin-bottom: 24px;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 159, 28, 0.2);
+      background: rgba(255, 159, 28, 0.06);
+      color: #ffb13a;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ff9d1c;
+      box-shadow: 0 0 12px #ff9d1c;
+      animation: pulse 1.7s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+      }
+    }
+
+    h1 {
+      font-size: clamp(55px, 7vw, 105px);
+      line-height: 0.9;
+      letter-spacing: -5px;
+      font-weight: 900;
+      margin-bottom: 28px;
+    }
+
+    h1 .line {
+      display: block;
+    }
+
+    h1 .accent {
+      background: linear-gradient(
+        100deg,
+        #ffd166 0%,
+        #ff9d1c 45%,
+        #ff5722 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .description {
+      max-width: 560px;
+      color: #a8a8a8;
+      font-size: 17px;
+      line-height: 1.8;
+      margin-bottom: 35px;
+    }
+
+    /* =========================================================
+       CTA
+    ========================================================= */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 38px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 23px;
+      border-radius: 13px;
+      font-size: 14px;
+      font-weight: 750;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ffb52b, #ff651f);
+      color: #111;
+      box-shadow: 0 14px 35px rgba(255, 105, 24, 0.18);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 42px rgba(255, 105, 24, 0.3);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.035);
+      color: #eee;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 159, 28, 0.35);
+      background: rgba(255, 159, 28, 0.06);
+      transform: translateY(-3px);
+    }
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: #898989;
+      font-size: 13px;
+    }
+
+    .contact-icon {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      color: #ffab2e;
+      font-size: 14px;
+    }
+
+    .contact-item a:hover {
+      color: #ffab2e;
+    }
+
+    /* =========================================================
+       RIGHT VISUAL
+    ========================================================= */
+    .visual {
+      position: relative;
+      min-height: 480px;
+      display: grid;
+      place-items: center;
+    }
+
+    .visual-ring {
+      position: absolute;
+      width: 390px;
+      height: 390px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 159, 28, 0.13);
+      animation: spin 22s linear infinite;
+    }
+
+    .visual-ring::before,
+    .visual-ring::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .visual-ring::before {
+      width: 11px;
+      height: 11px;
+      background: #ff9d1c;
+      box-shadow: 0 0 25px #ff9d1c;
+      top: 16px;
+      left: 50%;
+    }
+
+    .visual-ring::after {
+      width: 7px;
+      height: 7px;
+      background: #ff5c24;
+      box-shadow: 0 0 20px #ff5c24;
+      bottom: 40px;
+      right: 14px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .food-card {
+      position: relative;
+      width: min(330px, 80vw);
+      height: 330px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(
+          circle at 50% 45%,
+          rgba(255, 177, 44, 0.19),
+          rgba(255, 88, 26, 0.06) 40%,
+          transparent 70%
+        );
+      border: 1px solid rgba(255, 170, 55, 0.15);
+      box-shadow:
+        0 0 100px rgba(255, 104, 24, 0.1),
+        inset 0 0 60px rgba(255, 159, 28, 0.04);
+    }
+
+    .food-icon {
+      font-size: 125px;
+      filter: drop-shadow(0 25px 30px rgba(0, 0, 0, 0.5));
+      animation: foodFloat 4s ease-in-out infinite;
+      user-select: none;
+    }
+
+    @keyframes foodFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-3deg);
+      }
+      50% {
+        transform: translateY(-12px) rotate(3deg);
+      }
+    }
+
+    .mini-card {
+      position: absolute;
+      padding: 13px 16px;
+      border-radius: 15px;
+      background: rgba(20, 20, 20, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    .mini-card.top {
+      top: 38px;
+      right: 4%;
+      animation: miniFloat 5s ease-in-out infinite;
+    }
+
+    .mini-card.bottom {
+      bottom: 44px;
+      left: 0;
+      animation: miniFloat 6s ease-in-out infinite reverse;
+    }
+
+    @keyframes miniFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-9px);
+      }
+    }
+
+    .mini-title {
+      font-size: 10px;
+      color: #858585;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+    }
+
+    .mini-value {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+    footer {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      padding: 18px 6% 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #666;
+      font-size: 11px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer strong {
+      color: #999;
+    }
+
+    .social {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social a {
+      width: 31px;
+      height: 31px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      color: #888;
+      transition: 0.25s ease;
+    }
+
+    .social a:hover {
+      color: #ffab2e;
+      border-color: rgba(255, 159, 28, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       REVEAL ANIMATIONS
+    ========================================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      animation: reveal 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.3s;
+    }
+
+    .delay-4 {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+    @media (max-width: 900px) {
+      header {
+        padding: 22px 5%;
+      }
+
+      main {
+        padding: 35px 5% 45px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 720px;
+        margin: auto;
+      }
+
+      .description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .actions,
+      .contact-row {
+        justify-content: center;
+      }
+
+      .visual {
+        min-height: 390px;
+      }
+
+      .visual-ring {
+        width: 320px;
+        height: 320px;
+      }
+
+      .food-card {
+        width: 270px;
+        height: 270px;
+      }
+
+      .food-icon {
+        font-size: 100px;
+      }
+
+      .mini-card.top {
+        right: 10%;
+      }
+
+      .mini-card.bottom {
+        left: 8%;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      header {
+        padding: 18px 20px;
+      }
+
+      .header-contact {
+        display: none;
+      }
+
+      main {
+        padding: 45px 20px 35px;
+      }
+
+      h1 {
+        font-size: clamp(50px, 16vw, 76px);
+        letter-spacing: -3px;
+      }
+
+      .description {
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .contact-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .visual {
+        min-height: 330px;
+      }
+
+      .visual-ring {
+        width: 260px;
+        height: 260px;
+      }
+
+      .food-card {
+        width: 215px;
+        height: 215px;
+      }
+
+      .food-icon {
+        font-size: 78px;
+      }
+
+      .mini-card {
+        padding: 10px 12px;
+      }
+
+      .mini-card.top {
+        top: 15px;
+        right: 0;
+      }
+
+      .mini-card.bottom {
+        bottom: 12px;
+        left: 0;
+      }
+
+      footer {
+        padding: 17px 20px 22px;
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
+      }
+
+      .orb.one {
+        width: 280px;
+        height: 280px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- Decorative background -->
+    <div class="noise"></div>
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+
+    <!-- Header -->
+    <header class="reveal">
+      <a href="#" class="logo" aria-label="Snaxx Point Restaurant">
+        <div class="logo-mark">S</div>
+        <div class="logo-text">
+          Snaxx Point
+          <span>Restaurant</span>
+        </div>
+      </a>
+
+      <a
+        href="tel:+923008505528"
+        class="header-contact"
+      >
+        <span class="phone-dot"></span>
+        +92 300 8505528
+      </a>
+    </header>
+
+    <!-- Main -->
+    <main>
+      <section class="hero">
+
+        <!-- Left -->
+        <div class="hero-content">
+
+          <div class="eyebrow reveal delay-1">
+            <span class="eyebrow-dot"></span>
+            Something Delicious Is Coming
+          </div>
+
+          <h1 class="reveal delay-2">
+            <span class="line">Good Food.</span>
+            <span class="line accent">Good Times.</span>
+          </h1>
+
+          <p class="description reveal delay-3">
+            Snaxx Point Restaurant is getting ready to serve you something
+            special. Our new dining experience is currently being prepared —
+            and trust us, it'll be worth the wait.
+          </p>
+
+          <div class="actions reveal delay-3">
+
+            <a
+              href="tel:+923008505528"
+              class="btn btn-primary"
+            >
+              <span>📞</span>
+              Call Us
+            </a>
+
+            <a
+              href="mailto:snaxxpointrestaurant@gmail.com"
+              class="btn btn-secondary"
+            >
+              <span>✉</span>
+              Get In Touch
+            </a>
+
+          </div>
+
+          <div class="contact-row reveal delay-4">
+
+            <div class="contact-item">
+              <div class="contact-icon">☎</div>
+              <a href="tel:+923008505528">
+                +92 300 8505528
+              </a>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">✉</div>
+              <a href="mailto:snaxxpointrestaurant@gmail.com">
+                snaxxpointrestaurant@gmail.com
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Right visual -->
+        <div class="visual reveal delay-3">
+
+          <div class="visual-ring"></div>
+
+          <div class="food-card">
+            <div class="food-icon">🍔</div>
+          </div>
+
+          <div class="mini-card top">
+            <div class="mini-title">Status</div>
+            <div class="mini-value">Opening Soon ✨</div>
+          </div>
+
+          <div class="mini-card bottom">
+            <div class="mini-title">At Snaxx Point</div>
+            <div class="mini-value">Something Tasty Awaits</div>
+          </div>
+
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div>
+        © <span id="year"></span>
+        <strong>Snaxx Point Restaurant</strong>.
+        All rights reserved.
+      </div>
+
+      <div class="social">
+        <a
+          href="tel:+923008505528"
+          aria-label="Call Snaxx Point"
+          title="Call"
+        >
+          ☎
+        </a>
+
+        <a
+          href="mailto:snaxxpointrestaurant@gmail.com"
+          aria-label="Email Snaxx Point"
+          title="Email"
+        >
+          ✉
+        </a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Dynamic year
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Subtle mouse movement effect for desktop
+    const visual = document.querySelector(".visual");
+    const foodCard = document.querySelector(".food-card");
+
+    if (visual && foodCard && window.matchMedia("(pointer: fine)").matches) {
+      visual.addEventListener("mousemove", (event) => {
+        const rect = visual.getBoundingClientRect();
+
+        const x =
+          (event.clientX - rect.left) / rect.width - 0.5;
+
+        const y =
+          (event.clientY - rect.top) / rect.height - 0.5;
+
+        foodCard.style.transform =
+          `translate(${x * 10}px, ${y * 10}px)`;
+      });
+
+      visual.addEventListener("mouseleave", () => {
+        foodCard.style.transform = "";
+      });
+    }
+  </script>
+</body>
+</html>
