@@ -1,26 +1,198 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* ── Brand palette ─────────────────────────────── */
+  --color-ink: #090909;
+  --color-coal: #111111;
+  --color-ember: #e3a735;
+  --color-ember-light: #e3a735;
+  --color-ember-dark: #9b2e1b;
+  --color-flame: #9b2e1b;
+  --color-cream: #f5f0e8;
+  --color-smoke: #a8a8a8;
+  --color-mist: #898989;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* ── Typography ────────────────────────────────── */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* ── Animations ────────────────────────────────── */
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-float-reverse: float 10s ease-in-out infinite reverse;
+  --animate-drift: drift 7s ease-in-out infinite;
+  --animate-pulse-dot: pulse-dot 1.7s ease-in-out infinite;
+  --animate-spin-slow: spin 22s linear infinite;
+  --animate-food-float: food-float 4s ease-in-out infinite;
+  --animate-mini-float: mini-float 5s ease-in-out infinite;
+  --animate-mini-float-reverse: mini-float 6s ease-in-out infinite reverse;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(25px) rotate(8deg);
+    }
+  }
+
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(20px, -25px);
+    }
+  }
+
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes food-float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-3deg);
+    }
+    50% {
+      transform: translateY(-12px) rotate(3deg);
+    }
+  }
+
+  @keyframes mini-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-9px);
+    }
   }
 }
 
+/* ── Base ─────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-ink);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(227, 167, 53, 0.32);
+  color: #ffffff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0c0c0c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #e3a735, #9b2e1b);
+  border-radius: 100px;
+  border: 2px solid #0c0c0c;
+}
+
+/* ── Reusable design helpers ──────────────────────── */
+
+/* Gradient headline text */
+.text-gradient {
+  background: linear-gradient(100deg, #f0c96a 0%, #e3a735 45%, #9b2e1b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glassmorphism panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Film-grain noise overlay */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+}
+
+/* Ambient radial glows behind the page */
+.page-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(227, 167, 53, 0.15),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(155, 46, 27, 0.12),
+      transparent 30%
+    );
+  pointer-events: none;
+}
+
+/* Glowing food disc */
+.food-disc {
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(227, 167, 53, 0.19),
+    rgba(155, 46, 27, 0.06) 40%,
+    transparent 70%
+  );
+  border: 1px solid rgba(227, 167, 53, 0.15);
+  box-shadow:
+    0 0 100px rgba(227, 167, 53, 0.1),
+    inset 0 0 60px rgba(227, 167, 53, 0.04);
+}
+
+/* Focus visibility for keyboard users */
+:focus-visible {
+  outline: 2px solid rgba(227, 167, 53, 0.7);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Reduced motion ───────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
