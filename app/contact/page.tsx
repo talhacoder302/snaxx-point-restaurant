@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 };
 
 const openingHours = [
-  { day: "Monday – Thursday", hours: "11:00 AM – 11:00 PM" },
-  { day: "Friday", hours: "2:00 PM – 12:00 AM" },
-  { day: "Saturday", hours: "11:00 AM – 12:00 AM" },
-  { day: "Sunday", hours: "11:00 AM – 11:00 PM" },
+  { day: "Monday – Thursday", hours: "09:00 AM – 11:00 PM" },
+  { day: "Friday", hours: "02:00 PM – 12:00 AM" },
+  { day: "Saturday", hours: "10:00 AM – 12:00 AM" },
+  { day: "Sunday", hours: "09:00 AM – 11:00 PM" },
 ] as const;
 
 export default function ContactPage() {
@@ -276,23 +276,22 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="mt-7 flex h-[220px] items-center justify-center rounded-[16px] border border-dashed border-white/[0.12] bg-white/[0.02]">
-                    <div className="text-center">
-                      <span className="text-3xl" role="img" aria-hidden="true">
-                        🗺️
-                      </span>
-                      <p className="mt-3 text-[14px] font-semibold text-white/80">
-                        {"We're"} Open & Ready To Serve
-                      </p>
-                      <p className="mx-auto mt-1.5 max-w-[280px] text-[13px] leading-[1.7] text-smoke">
-                        Call or WhatsApp us for directions and {"we'll"} point
-                        you the right way.
-                      </p>
-                    </div>
+                  <div className="mt-7 h-[280px] overflow-hidden rounded-[16px] border border-white/[0.12]">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11174.15969389896!2d73.06471010757416!3d33.6287124908567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df9500249e6bd9%3A0x2090320af965a1d4!2sSnaxx%20Point%20Restaurant!5e0!3m2!1sen!2s!4v1787221165706!5m2!1sen!2s"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      title="Snaxx Point Restaurant location on Google Maps"
+                    />
+                    
                   </div>
 
                   <p className="mt-6 text-[13.5px] leading-[1.75] text-smoke">
-                    Need directions? Call us or send a WhatsApp message and
+                    Check directions, call us, or send a WhatsApp message and
                     {"we'll"} guide you straight to our door.
                   </p>
                 </div>

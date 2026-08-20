@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 
-type FormStatus = "idle" | "submitting" | "success";
+type FormStatus = "idle" | "submitting" | "success" | "error";
 
 const inputClasses =
   "w-full rounded-[13px] border border-white/10 bg-white/[0.035] px-4 py-3.5 text-[14.5px] text-white placeholder:text-[#666] backdrop-blur-md transition-all duration-300 focus:border-ember/40 focus:bg-white/[0.05] focus:outline-none focus:ring-2 focus:ring-ember/15";
@@ -10,15 +10,31 @@ const inputClasses =
 export default function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus("submitting");
 
-    // Frontend-only demo — simulate a short delay, then show success.
-    // Wire this up to a real backend / form service later.
-    window.setTimeout(() => {
-      setStatus("success");
-    }, 900);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "");
+    formData.append("subject", "New message from Snaxx Point website");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   if (status === "success") {
@@ -135,6 +151,13 @@ export default function ContactForm() {
           </>
         )}
       </button>
+
+      {status === "error" && (
+        <p className="mt-4 text-center text-[13.5px] text-flame">
+          Something went wrong sending your message. Please try again, or
+          reach out on WhatsApp instead.
+        </p>
+      )}
     </form>
   );
 }
