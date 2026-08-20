@@ -11,11 +11,11 @@ export default function Footer() {
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-5 px-5 py-7 text-[11px] text-[#666] sm:px-8 md:flex-row lg:px-10">
         <div className="flex items-center gap-3">
           <Image
-            src="/snaxx-point-logo.png"
+            src="/snaxxpoint-logo.png"
             alt="Snaxx Point Restaurant Logo"
             width={32}
             height={32}
-            className="h-8 w-8 rounded-[9px] object-cover"
+            className="h-8 w-8 object-contain"
           />
           <p className="text-center md:text-left">
             © {year} <strong className="font-semibold text-[#999]">Snaxx Point Restaurant</strong>.

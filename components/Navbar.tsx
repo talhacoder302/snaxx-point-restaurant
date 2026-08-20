@@ -53,11 +53,11 @@ export default function Navbar() {
           aria-label="Snaxx Point Restaurant — Home"
         >
           <Image
-            src="/snaxx-point-logo.png"
+            src="/snaxxpoint-logo.png"
             alt="Snaxx Point Restaurant Logo"
             width={44}
             height={44}
-            className="h-11 w-11 rounded-[13px] object-cover shadow-[0_10px_30px_rgba(227,167,53,0.25)] transition-transform duration-300 group-hover:scale-105"
+            className="h-11 w-11 object-contain drop-shadow-[0_8px_18px_rgba(227,167,53,0.3)] transition-transform duration-300 group-hover:scale-105"
           />
           <span className="leading-none">
             <span className="block text-[17px] font-extrabold tracking-tight text-white">
