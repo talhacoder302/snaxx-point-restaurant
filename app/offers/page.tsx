@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContactCTA from "@/components/ContactCTA";
+import FeaturedOffersBanner from "@/components/FeaturedOffersBanner";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import OfferCard from "@/components/OfferCard";
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 
 export default async function OffersPage() {
   const offers = await getOffers();
-  const featuredOffer = offers.find((offer) => offer.featured);
+  const featuredOffers = offers.filter((offer) => offer.featured);
   const regularOffers = offers.filter((offer) => !offer.featured);
 
   return (
@@ -40,6 +41,15 @@ export default async function OffersPage() {
           primaryCta={{ label: "Browse Offers", href: "#offers" }}
           secondaryCta={{ label: "Order on WhatsApp", href: buildWhatsAppOrderLink("a meal") }}
         />
+
+        {/* Big deals banner */}
+        {featuredOffers.length > 0 && (
+          <div className="relative px-5 sm:px-8 lg:px-10">
+            <Reveal>
+              <FeaturedOffersBanner offers={featuredOffers} />
+            </Reveal>
+          </div>
+        )}
 
         {/* Offers grid */}
         <section id="offers" className="relative scroll-mt-24 py-20 sm:py-28">
@@ -85,23 +95,13 @@ export default async function OffersPage() {
                 </div>
               </Reveal>
             ) : (
-              <>
-                {/* Featured offer */}
-                {featuredOffer && (
-                  <div className="mt-14">
-                    <OfferCard offer={featuredOffer} />
-                  </div>
-                )}
-
-                {/* Regular offers grid */}
-                {regularOffers.length > 0 && (
-                  <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {regularOffers.map((offer, index) => (
-                      <OfferCard key={offer.id} offer={offer} delay={index * 100} />
-                    ))}
-                  </div>
-                )}
-              </>
+              regularOffers.length > 0 && (
+                <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {regularOffers.map((offer, index) => (
+                    <OfferCard key={offer.id} offer={offer} delay={index * 100} />
+                  ))}
+                </div>
+              )
             )}
           </div>
         </section>

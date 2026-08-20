@@ -53,7 +53,7 @@ export default function Navbar() {
           aria-label="Snaxx Point Restaurant — Home"
         >
           <Image
-            src="/snaxxpoint-logo.jpeg"
+            src="/snaxx-point-logo.png"
             alt="Snaxx Point Restaurant Logo"
             width={44}
             height={44}

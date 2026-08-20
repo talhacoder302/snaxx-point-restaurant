@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-5 px-5 py-7 text-[11px] text-[#666] sm:px-8 md:flex-row lg:px-10">
         <div className="flex items-center gap-3">
           <Image
-            src="/snaxxpoint-logo.jpeg"
+            src="/snaxx-point-logo.png"
             alt="Snaxx Point Restaurant Logo"
             width={32}
             height={32}
