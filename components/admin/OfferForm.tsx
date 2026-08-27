@@ -92,12 +92,12 @@ export default function OfferForm({ action, offer, submitLabel }: OfferFormProps
 
         <details className="mt-3 text-[12px] text-white/50">
           <summary className="cursor-pointer select-none text-white/60 hover:text-white/80">
-            Or use an image already on the server
+            Or paste an image URL directly
           </summary>
           <input
             name="imagePath"
             defaultValue={offer?.imagePath ?? ""}
-            placeholder="/offers/chicken-dabo.jpg"
+            placeholder="https://..."
             className={`${inputClasses} mt-2`}
           />
           <p className="mt-1.5">
