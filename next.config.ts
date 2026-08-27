@@ -8,6 +8,15 @@ const nextConfig: NextConfig = {
     // as-is avoids that; source images are already reasonably sized.
     unoptimized: true,
   },
+  experimental: {
+    serverActions: {
+      // Default is 1MB, which the offer-image upload Server Action
+      // (up to 5MB, see MAX_IMAGE_BYTES in offers/actions.ts) exceeds —
+      // Next.js then rejects the request before it reaches our code,
+      // surfacing as a generic 500 instead of our own file-size error.
+      bodySizeLimit: "8mb",
+    },
+  },
 };
 
 export default nextConfig;
