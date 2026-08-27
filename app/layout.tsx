@@ -35,12 +35,12 @@ export const metadata: Metadata = {
     "WhatsApp Order",
   ],
   icons: {
-    icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23090909'/%3E%3Ctext x='50' y='69' text-anchor='middle' font-family='Arial,sans-serif' font-size='62' font-weight='900' fill='%23e3a735'%3ES%3C/text%3E%3C/svg%3E",
+    icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23181818'/%3E%3Ctext x='50' y='69' text-anchor='middle' font-family='Arial,sans-serif' font-size='62' font-weight='900' fill='%23e4002b'%3ES%3C/text%3E%3C/svg%3E",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#090909",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

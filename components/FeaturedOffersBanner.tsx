@@ -26,7 +26,7 @@ export default function FeaturedOffersBanner({ offers }: { offers: Offer[] }) {
 
   return (
     <div
-      className="relative mx-auto mt-14 max-w-4xl overflow-hidden rounded-[28px] border border-ember/25 bg-gradient-to-br from-ember/[0.09] via-white/[0.03] to-flame/[0.05] backdrop-blur-md"
+      className="relative mx-auto mt-14 max-w-4xl overflow-hidden rounded-[28px] border border-ember/25 bg-gradient-to-br from-ember/[0.1] via-cream-deep/50 to-flame/[0.06] backdrop-blur-md"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -40,18 +40,18 @@ export default function FeaturedOffersBanner({ offers }: { offers: Offer[] }) {
         key={offer.id}
         className="animate-banner-fade grid gap-8 px-8 py-12 sm:grid-cols-[auto_1fr] sm:items-center sm:px-12 sm:py-14"
       >
-        <div className="mx-auto grid h-28 w-28 place-items-center rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(227,167,53,0.18),rgba(155,46,27,0.06)_45%,transparent_70%)] border border-ember/[0.15] sm:mx-0">
+        <div className="mx-auto grid h-28 w-28 place-items-center rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(228,0,43,0.18),rgba(122,0,22,0.06)_45%,transparent_70%)] border border-ember/[0.15] sm:mx-0">
           <span role="img" aria-label={offer.title} className="text-[56px]">
             {offer.emoji}
           </span>
         </div>
 
         <div className="text-center sm:text-left">
-          <span className="inline-flex items-center rounded-full bg-gradient-to-br from-ember-light to-ember-dark px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-[1px] text-ink">
+          <span className="inline-flex items-center rounded-full bg-ember px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-[1px] text-white">
             {offer.discountBadge}
           </span>
 
-          <h2 className="mt-4 font-display text-2xl font-black text-white sm:text-3xl">
+          <h2 className="mt-4 font-display text-2xl font-black text-ink sm:text-3xl">
             {offer.title}
           </h2>
 
@@ -73,7 +73,7 @@ export default function FeaturedOffersBanner({ offers }: { offers: Offer[] }) {
               href={buildWhatsAppOrderLink(offer.title)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-[12px] bg-gradient-to-br from-ember-light to-ember-dark px-5 text-[13px] font-bold text-ink shadow-[0_12px_30px_rgba(227,167,53,0.2)] transition-all duration-300 hover:-translate-y-0.5"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-[12px] bg-ember px-5 text-[13px] font-bold text-white shadow-[0_12px_30px_rgba(228,0,43,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-ember-dark"
             >
               <span aria-hidden="true">💬</span>
               {offer.ctaLabel}
@@ -94,7 +94,7 @@ export default function FeaturedOffersBanner({ offers }: { offers: Offer[] }) {
               className={`h-2 rounded-full transition-all duration-300 ${
                 dotIndex === index
                   ? "w-6 bg-ember"
-                  : "w-2 bg-white/20 hover:bg-white/35"
+                  : "w-2 bg-ink/15 hover:bg-ink/25"
               }`}
             />
           ))}

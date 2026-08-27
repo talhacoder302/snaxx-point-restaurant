@@ -27,7 +27,7 @@ export default function SectionHeading({
       <p className="text-[11px] font-bold uppercase tracking-[2px] text-ember-light">
         {eyebrow}
       </p>
-      <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-black leading-[1.05] tracking-[-0.02em] text-white">
+      <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-black leading-[1.05] tracking-[-0.02em] text-ink">
         {title}
       </h2>
       {description && (

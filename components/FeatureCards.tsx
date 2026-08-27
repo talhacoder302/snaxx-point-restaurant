@@ -29,7 +29,7 @@ export default function FeatureCards() {
           <p className="text-[11px] font-bold uppercase tracking-[2px] text-ember-light">
             Why Snaxx Point
           </p>
-          <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-black leading-[1.05] tracking-[-0.02em] text-white">
+          <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-black leading-[1.05] tracking-[-0.02em] text-ink">
             Crafted With <span className="text-gradient">Passion</span>
           </h2>
         </Reveal>
@@ -37,7 +37,7 @@ export default function FeatureCards() {
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
             <Reveal key={feature.title} delay={index * 120}>
-              <article className="group relative h-full overflow-hidden rounded-[20px] border border-white/[0.08] bg-white/[0.03] p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-ember/25 hover:bg-white/[0.05] hover:shadow-[0_20px_60px_rgba(227,167,53,0.08)]">
+              <article className="group relative h-full overflow-hidden rounded-[20px] border border-ink/[0.07] bg-white p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-ember/25 hover:bg-cream-deep/50 hover:shadow-[0_20px_60px_rgba(228,0,43,0.08)]">
                 {/* Top glow line */}
                 <span
                   aria-hidden="true"
@@ -46,12 +46,12 @@ export default function FeatureCards() {
 
                 <span
                   aria-hidden="true"
-                  className="grid h-14 w-14 place-items-center rounded-2xl border border-ember/15 bg-ember/[0.07] text-2xl shadow-[0_0_30px_rgba(227,167,53,0.06)] transition-transform duration-300 group-hover:scale-110"
+                  className="grid h-14 w-14 place-items-center rounded-2xl border border-ember/15 bg-ember/[0.07] text-2xl shadow-[0_0_30px_rgba(228,0,43,0.06)] transition-transform duration-300 group-hover:scale-110"
                 >
                   {feature.icon}
                 </span>
 
-                <h3 className="mt-6 text-lg font-bold text-white">
+                <h3 className="mt-6 text-lg font-bold text-ink">
                   {feature.title}
                 </h3>
 

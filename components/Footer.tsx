@@ -7,8 +7,8 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative z-10 border-t border-white/[0.05]">
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-5 px-5 py-7 text-[11px] text-[#666] sm:px-8 md:flex-row lg:px-10">
+    <footer className="relative z-10 border-t border-ink/[0.08]">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-5 px-5 py-7 text-[11px] text-mist sm:px-8 md:flex-row lg:px-10">
         <div className="flex items-center gap-3">
           <Image
             src="/snaxxpoint-logo.png"
@@ -18,7 +18,7 @@ export default function Footer() {
             className="h-8 w-8 object-contain"
           />
           <p className="text-center md:text-left">
-            © {year} <strong className="font-semibold text-[#999]">Snaxx Point Restaurant</strong>.
+            © {year} <strong className="font-semibold text-ink/70">Snaxx Point Restaurant</strong>.
             All rights reserved.
           </p>
         </div>
@@ -45,7 +45,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             aria-label="Order on WhatsApp"
             title="WhatsApp"
-            className="grid h-8 w-8 place-items-center rounded-[9px] border border-white/[0.07] text-[#888] transition-all duration-200 hover:-translate-y-0.5 hover:border-ember/30 hover:text-ember-light"
+            className="grid h-8 w-8 place-items-center rounded-[9px] border border-ink/10 text-mist transition-all duration-200 hover:-translate-y-0.5 hover:border-ember/30 hover:text-ember-light"
           >
             💬
           </a>
@@ -54,7 +54,7 @@ export default function Footer() {
             href={site.phoneHref}
             aria-label="Call Snaxx Point"
             title="Call"
-            className="grid h-8 w-8 place-items-center rounded-[9px] border border-white/[0.07] text-[#888] transition-all duration-200 hover:-translate-y-0.5 hover:border-ember/30 hover:text-ember-light"
+            className="grid h-8 w-8 place-items-center rounded-[9px] border border-ink/10 text-mist transition-all duration-200 hover:-translate-y-0.5 hover:border-ember/30 hover:text-ember-light"
           >
             ☎
           </a>
@@ -63,7 +63,7 @@ export default function Footer() {
             href={site.emailHref}
             aria-label="Email Snaxx Point"
             title="Email"
-            className="grid h-8 w-8 place-items-center rounded-[9px] border border-white/[0.07] text-[#888] transition-all duration-200 hover:-translate-y-0.5 hover:border-ember/30 hover:text-ember-light"
+            className="grid h-8 w-8 place-items-center rounded-[9px] border border-ink/10 text-mist transition-all duration-200 hover:-translate-y-0.5 hover:border-ember/30 hover:text-ember-light"
           >
             ✉
           </a>

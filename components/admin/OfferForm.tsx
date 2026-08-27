@@ -115,7 +115,7 @@ export default function OfferForm({ action, offer, submitLabel }: OfferFormProps
       <button
         type="submit"
         disabled={pending}
-        className="rounded-[10px] bg-gradient-to-br from-ember-light to-ember-dark px-5 py-2.5 text-sm font-bold text-ink transition-opacity disabled:opacity-60"
+        className="rounded-[10px] bg-gradient-to-br from-ember-light to-ember-dark px-5 py-2.5 text-sm font-bold text-white transition-opacity disabled:opacity-60"
       >
         {pending ? "Saving…" : submitLabel}
       </button>

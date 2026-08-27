@@ -22,10 +22,7 @@ export default async function OffersPage() {
   const regularOffers = offers.filter((offer) => !offer.featured);
 
   return (
-    <div className="page-glow relative flex min-h-screen flex-col overflow-hidden">
-      {/* Film-grain noise overlay */}
-      <div aria-hidden="true" className="noise-overlay" />
-
+    <div className="relative flex min-h-screen flex-col overflow-hidden">
       <Navbar />
 
       <main className="relative z-10 flex-1">
@@ -53,16 +50,6 @@ export default async function OffersPage() {
 
         {/* Offers grid */}
         <section id="offers" className="relative scroll-mt-24 py-20 sm:py-28">
-          {/* Ambient glows */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -left-40 top-1/3 h-[380px] w-[380px] rounded-full border border-ember/[0.1] bg-ember/[0.04] blur-3xl"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-40 bottom-1/4 h-[380px] w-[380px] rounded-full border border-flame/[0.1] bg-flame/[0.04] blur-3xl"
-          />
-
           <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <SectionHeading
               eyebrow="Today's Deals"
@@ -77,7 +64,7 @@ export default async function OffersPage() {
             {offers.length === 0 ? (
               /* Empty state — shown when no offers exist (future CMS-ready) */
               <Reveal delay={150}>
-                <div className="mx-auto mt-14 max-w-xl rounded-[22px] border border-white/[0.08] bg-white/[0.03] px-8 py-14 text-center backdrop-blur-md">
+                <div className="mx-auto mt-14 max-w-xl rounded-[22px] border border-ink/[0.07] bg-white px-8 py-14 text-center backdrop-blur-md">
                   <span
                     role="img"
                     aria-hidden="true"
@@ -85,7 +72,7 @@ export default async function OffersPage() {
                   >
                     🍽️
                   </span>
-                  <h3 className="mt-6 font-display text-2xl font-black text-white">
+                  <h3 className="mt-6 font-display text-2xl font-black text-ink">
                     No Offers Right Now
                   </h3>
                   <p className="mx-auto mt-3 max-w-[380px] text-[14.5px] leading-[1.75] text-smoke">

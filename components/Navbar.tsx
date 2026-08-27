@@ -38,7 +38,7 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-white/[0.06] bg-ink/80 backdrop-blur-xl"
+          ? "border-b border-ink/[0.07] bg-cream/90 backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
@@ -57,10 +57,10 @@ export default function Navbar() {
             alt="Snaxx Point Restaurant Logo"
             width={44}
             height={44}
-            className="h-11 w-11 object-contain drop-shadow-[0_8px_18px_rgba(227,167,53,0.3)] transition-transform duration-300 group-hover:scale-105"
+            className="h-11 w-11 object-contain drop-shadow-[0_8px_18px_rgba(228,0,43,0.3)] transition-transform duration-300 group-hover:scale-105"
           />
           <span className="leading-none">
-            <span className="block text-[17px] font-extrabold tracking-tight text-white">
+            <span className="block text-[17px] font-extrabold tracking-tight text-ink">
               Snaxx Point
             </span>
             <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[2px] text-ember">
@@ -84,7 +84,7 @@ export default function Navbar() {
                   className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                     isActive
                       ? "text-ember"
-                      : "text-white/70 hover:text-white"
+                      : "text-ink/70 hover:text-ink"
                   }`}
                   aria-current={isActive ? "page" : undefined}
                 >
@@ -104,7 +104,7 @@ export default function Navbar() {
             href={buildWhatsAppOrderLink("a meal")}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2.5 text-[13px] font-semibold text-white/90 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/40 hover:text-white sm:inline-flex"
+            className="hidden items-center gap-2.5 rounded-full border border-ink/10 bg-white px-4 py-2.5 text-[13px] font-semibold text-ink/90 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/40 hover:text-ink sm:inline-flex"
           >
             <span className="h-2 w-2 rounded-full bg-[#7dfc98] shadow-[0_0_12px_#7dfc98]" />
             Order Now
@@ -114,7 +114,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/[0.035] text-white backdrop-blur-md transition-colors hover:border-ember/40 md:hidden"
+            className="grid h-11 w-11 place-items-center rounded-xl border border-ink/10 bg-white text-ink backdrop-blur-md transition-colors hover:border-ember/40 md:hidden"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -145,7 +145,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`overflow-hidden border-b border-white/[0.06] bg-ink/95 backdrop-blur-xl transition-all duration-300 md:hidden ${
+        className={`overflow-hidden border-b border-ink/[0.07] bg-cream/98 backdrop-blur-xl transition-all duration-300 md:hidden ${
           menuOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
@@ -163,7 +163,7 @@ export default function Navbar() {
                   className={`block rounded-xl px-4 py-3 text-[15px] font-semibold transition-colors ${
                     isActive
                       ? "bg-ember/10 text-ember"
-                      : "text-white/75 hover:bg-white/[0.04] hover:text-white"
+                      : "text-ink/75 hover:bg-ink/[0.04] hover:text-ink"
                   }`}
                   aria-current={isActive ? "page" : undefined}
                 >
@@ -178,9 +178,9 @@ export default function Navbar() {
               href={buildWhatsAppOrderLink("a meal")}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-br from-ember-light to-ember-dark px-4 py-3.5 text-sm font-bold text-ink shadow-[0_14px_35px_rgba(227,167,53,0.18)] transition-transform duration-300 hover:-translate-y-0.5"
+              className="flex items-center justify-center gap-2.5 rounded-xl bg-ember px-4 py-3.5 text-sm font-bold text-white shadow-[0_14px_35px_rgba(228,0,43,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-ember-dark"
             >
-              <span className="h-2 w-2 rounded-full bg-ink/70" />
+              <span className="h-2 w-2 rounded-full bg-white/70" />
               Order Now — {site.phoneDisplay}
             </a>
           </li>

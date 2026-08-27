@@ -23,10 +23,7 @@ const openingHours = [
 
 export default function ContactPage() {
   return (
-    <div className="page-glow relative flex min-h-screen flex-col overflow-hidden">
-      {/* Film-grain noise overlay */}
-      <div aria-hidden="true" className="noise-overlay" />
-
+    <div className="relative flex min-h-screen flex-col overflow-hidden">
       <Navbar />
 
       <main className="relative z-10 flex-1">
@@ -53,18 +50,18 @@ export default function ContactPage() {
                   href={buildWhatsAppOrderLink("a meal")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative flex h-full flex-col overflow-hidden rounded-[22px] border border-white/[0.08] bg-white/[0.03] p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-ember/25 hover:bg-white/[0.05] hover:shadow-[0_20px_60px_rgba(227,167,53,0.08)]"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-[22px] border border-ink/[0.07] bg-white p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-ember/25 hover:bg-cream-deep/50 hover:shadow-[0_20px_60px_rgba(228,0,43,0.08)]"
                 >
                   <span
                     aria-hidden="true"
                     className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-ember/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   />
 
-                  <span className="grid h-14 w-14 place-items-center rounded-2xl border border-ember/15 bg-ember/[0.07] text-2xl shadow-[0_0_30px_rgba(227,167,53,0.06)] transition-transform duration-300 group-hover:scale-110">
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl border border-ember/15 bg-ember/[0.07] text-2xl shadow-[0_0_30px_rgba(228,0,43,0.06)] transition-transform duration-300 group-hover:scale-110">
                     💬
                   </span>
 
-                  <h2 className="mt-6 text-lg font-bold text-white">
+                  <h2 className="mt-6 text-lg font-bold text-ink">
                     Order on WhatsApp
                   </h2>
                   <p className="mt-2 flex-1 text-[14.5px] leading-[1.75] text-smoke">
@@ -84,18 +81,18 @@ export default function ContactPage() {
               <Reveal delay={120}>
                 <a
                   href={site.phoneHref}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-[22px] border border-white/[0.08] bg-white/[0.03] p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-ember/25 hover:bg-white/[0.05] hover:shadow-[0_20px_60px_rgba(227,167,53,0.08)]"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-[22px] border border-ink/[0.07] bg-white p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-ember/25 hover:bg-cream-deep/50 hover:shadow-[0_20px_60px_rgba(228,0,43,0.08)]"
                 >
                   <span
                     aria-hidden="true"
                     className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-ember/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   />
 
-                  <span className="grid h-14 w-14 place-items-center rounded-2xl border border-ember/15 bg-ember/[0.07] text-2xl shadow-[0_0_30px_rgba(227,167,53,0.06)] transition-transform duration-300 group-hover:scale-110">
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl border border-ember/15 bg-ember/[0.07] text-2xl shadow-[0_0_30px_rgba(228,0,43,0.06)] transition-transform duration-300 group-hover:scale-110">
                     ☎
                   </span>
 
-                  <h2 className="mt-6 text-lg font-bold text-white">
+                  <h2 className="mt-6 text-lg font-bold text-ink">
                     Call Us
                   </h2>
                   <p className="mt-2 flex-1 text-[14.5px] leading-[1.75] text-smoke">
@@ -116,12 +113,6 @@ export default function ContactPage() {
 
         {/* Contact form + info */}
         <section className="relative overflow-hidden py-20 sm:py-28">
-          {/* Ambient glow */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -left-40 top-1/3 h-[380px] w-[380px] rounded-full border border-ember/[0.1] bg-ember/[0.04] blur-3xl"
-          />
-
           <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
               {/* Left: info */}
@@ -144,7 +135,7 @@ export default function ContactPage() {
                       href={buildWhatsAppOrderLink("a meal")}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center gap-4 rounded-[16px] border border-white/[0.08] bg-white/[0.03] px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/25"
+                      className="group flex items-center gap-4 rounded-[16px] border border-ink/[0.07] bg-white px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/25"
                     >
                       <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-ember/15 bg-ember/[0.07] text-lg text-ember-light">
                         💬
@@ -153,7 +144,7 @@ export default function ContactPage() {
                         <span className="block text-[11px] font-bold uppercase tracking-[1.5px] text-mist">
                           WhatsApp
                         </span>
-                        <span className="mt-0.5 block text-[15px] font-bold text-white">
+                        <span className="mt-0.5 block text-[15px] font-bold text-ink">
                           {site.phoneDisplay}
                         </span>
                       </span>
@@ -161,7 +152,7 @@ export default function ContactPage() {
 
                     <a
                       href={site.phoneHref}
-                      className="group flex items-center gap-4 rounded-[16px] border border-white/[0.08] bg-white/[0.03] px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/25"
+                      className="group flex items-center gap-4 rounded-[16px] border border-ink/[0.07] bg-white px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/25"
                     >
                       <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-ember/15 bg-ember/[0.07] text-lg text-ember-light">
                         ☎
@@ -170,7 +161,7 @@ export default function ContactPage() {
                         <span className="block text-[11px] font-bold uppercase tracking-[1.5px] text-mist">
                           Phone
                         </span>
-                        <span className="mt-0.5 block text-[15px] font-bold text-white">
+                        <span className="mt-0.5 block text-[15px] font-bold text-ink">
                           {site.phoneDisplay}
                         </span>
                       </span>
@@ -178,7 +169,7 @@ export default function ContactPage() {
 
                     <a
                       href={site.emailHref}
-                      className="group flex items-center gap-4 rounded-[16px] border border-white/[0.08] bg-white/[0.03] px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/25"
+                      className="group flex items-center gap-4 rounded-[16px] border border-ink/[0.07] bg-white px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/25"
                     >
                       <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-ember/15 bg-ember/[0.07] text-lg text-ember-light">
                         ✉
@@ -187,7 +178,7 @@ export default function ContactPage() {
                         <span className="block text-[11px] font-bold uppercase tracking-[1.5px] text-mist">
                           Email
                         </span>
-                        <span className="mt-0.5 block text-[15px] font-bold text-white">
+                        <span className="mt-0.5 block text-[15px] font-bold text-ink">
                           {site.email}
                         </span>
                       </span>
@@ -206,17 +197,11 @@ export default function ContactPage() {
 
         {/* Opening hours + location */}
         <section className="relative overflow-hidden py-20 sm:py-28">
-          {/* Ambient glow */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-40 top-1/2 h-[380px] w-[380px] -translate-y-1/2 rounded-full border border-flame/[0.1] bg-flame/[0.04] blur-3xl"
-          />
-
           <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <div className="grid gap-6 lg:grid-cols-2">
               {/* Opening hours */}
               <Reveal>
-                <div className="relative h-full overflow-hidden rounded-[22px] border border-white/[0.08] bg-white/[0.03] p-8 backdrop-blur-md sm:p-10">
+                <div className="relative h-full overflow-hidden rounded-[22px] border border-ink/[0.07] bg-white p-8 backdrop-blur-md sm:p-10">
                   <span
                     aria-hidden="true"
                     className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-ember/50 to-transparent"
@@ -227,7 +212,7 @@ export default function ContactPage() {
                       🕐
                     </span>
                     <div>
-                      <h2 className="text-lg font-bold text-white">
+                      <h2 className="text-lg font-bold text-ink">
                         Opening Hours
                       </h2>
                       <p className="text-[12px] font-semibold uppercase tracking-[1.5px] text-ember-light">
@@ -240,9 +225,9 @@ export default function ContactPage() {
                     {openingHours.map((slot) => (
                       <li
                         key={slot.day}
-                        className="flex items-center justify-between gap-4 border-b border-white/[0.05] pb-3.5 last:border-b-0 last:pb-0"
+                        className="flex items-center justify-between gap-4 border-b border-ink/[0.08] pb-3.5 last:border-b-0 last:pb-0"
                       >
-                        <span className="text-[14.5px] font-semibold text-white/85">
+                        <span className="text-[14.5px] font-semibold text-ink/85">
                           {slot.day}
                         </span>
                         <span className="text-[14px] font-medium text-smoke">
@@ -256,7 +241,7 @@ export default function ContactPage() {
 
               {/* Location */}
               <Reveal delay={120}>
-                <div className="relative h-full overflow-hidden rounded-[22px] border border-white/[0.08] bg-white/[0.03] p-8 backdrop-blur-md sm:p-10">
+                <div className="relative h-full overflow-hidden rounded-[22px] border border-ink/[0.07] bg-white p-8 backdrop-blur-md sm:p-10">
                   <span
                     aria-hidden="true"
                     className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-ember/50 to-transparent"
@@ -267,7 +252,7 @@ export default function ContactPage() {
                       📍
                     </span>
                     <div>
-                      <h2 className="text-lg font-bold text-white">
+                      <h2 className="text-lg font-bold text-ink">
                         Find Us
                       </h2>
                       <p className="text-[12px] font-semibold uppercase tracking-[1.5px] text-ember-light">
@@ -276,7 +261,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="mt-7 h-[280px] overflow-hidden rounded-[16px] border border-white/[0.12]">
+                  <div className="mt-7 h-[280px] overflow-hidden rounded-[16px] border border-ink/10">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11174.15969389896!2d73.06471010757416!3d33.6287124908567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df9500249e6bd9%3A0x2090320af965a1d4!2sSnaxx%20Point%20Restaurant!5e0!3m2!1sen!2s!4v1787221165706!5m2!1sen!2s"
                       width="100%"

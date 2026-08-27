@@ -52,7 +52,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={pending}
-            className="mt-2 w-full rounded-[10px] bg-gradient-to-br from-ember-light to-ember-dark py-2.5 text-sm font-bold text-ink transition-opacity disabled:opacity-60"
+            className="mt-2 w-full rounded-[10px] bg-gradient-to-br from-ember-light to-ember-dark py-2.5 text-sm font-bold text-white transition-opacity disabled:opacity-60"
           >
             {pending ? "Signing in…" : "Sign In"}
           </button>

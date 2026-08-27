@@ -5,7 +5,7 @@ import { useState, type FormEvent } from "react";
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
 const inputClasses =
-  "w-full rounded-[13px] border border-white/10 bg-white/[0.035] px-4 py-3.5 text-[14.5px] text-white placeholder:text-[#666] backdrop-blur-md transition-all duration-300 focus:border-ember/40 focus:bg-white/[0.05] focus:outline-none focus:ring-2 focus:ring-ember/15";
+  "w-full rounded-[13px] border border-ink/10 bg-white px-4 py-3.5 text-[14.5px] text-ink placeholder:text-mist backdrop-blur-md transition-all duration-300 focus:border-ember/40 focus:bg-cream-deep/50 focus:outline-none focus:ring-2 focus:ring-ember/15";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -40,10 +40,10 @@ export default function ContactForm() {
   if (status === "success") {
     return (
       <div className="flex h-full min-h-[420px] flex-col items-center justify-center rounded-[22px] border border-ember/20 bg-ember/[0.05] px-8 text-center backdrop-blur-md">
-        <span className="grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-ember-light to-ember-dark text-2xl text-ink shadow-[0_14px_35px_rgba(227,167,53,0.25)]">
+        <span className="grid h-16 w-16 place-items-center rounded-full bg-ember text-2xl text-white shadow-[0_14px_35px_rgba(228,0,43,0.25)]">
           ✓
         </span>
-        <h3 className="mt-6 font-display text-2xl font-black text-white">
+        <h3 className="mt-6 font-display text-2xl font-black text-ink">
           Message Sent!
         </h3>
         <p className="mt-3 max-w-[320px] text-[14.5px] leading-[1.75] text-smoke">
@@ -52,7 +52,7 @@ export default function ContactForm() {
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-7 inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-white/10 bg-white/[0.035] px-6 text-[13px] font-bold text-white/95 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/35 hover:bg-ember/[0.06]"
+          className="mt-7 inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-ink/10 bg-white px-6 text-[13px] font-bold text-ink/95 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/35 hover:bg-ember/[0.06]"
         >
           Send Another Message
         </button>
@@ -63,7 +63,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-[22px] border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-md sm:p-8"
+      className="rounded-[22px] border border-ink/[0.07] bg-white p-6 backdrop-blur-md sm:p-8"
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -137,11 +137,11 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center gap-2.5 rounded-[13px] bg-gradient-to-br from-ember-light to-ember-dark px-7 text-sm font-bold text-ink shadow-[0_14px_35px_rgba(227,167,53,0.18)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(227,167,53,0.3)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+        className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center gap-2.5 rounded-[13px] bg-ember px-7 text-sm font-bold text-white shadow-[0_14px_35px_rgba(228,0,43,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-ember-dark hover:shadow-[0_18px_42px_rgba(228,0,43,0.3)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
       >
         {status === "submitting" ? (
           <>
-            <span className="h-4 w-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink" />
+            <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
             Sending…
           </>
         ) : (

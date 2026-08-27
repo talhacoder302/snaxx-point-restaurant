@@ -11,7 +11,7 @@ export default async function AdminOffersPage() {
         <h1 className="font-display text-2xl font-black text-white">Offers</h1>
         <Link
           href="/admin/offers/new"
-          className="rounded-[10px] bg-gradient-to-br from-ember-light to-ember-dark px-4 py-2.5 text-[13px] font-bold text-ink"
+          className="rounded-[10px] bg-gradient-to-br from-ember-light to-ember-dark px-4 py-2.5 text-[13px] font-bold text-white"
         >
           + Add Offer
         </Link>
