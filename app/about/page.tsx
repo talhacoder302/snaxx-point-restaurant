@@ -59,6 +59,7 @@ export default function AboutPage() {
                   src="/about.jpg"
                   alt="A wok-fried chicken and vegetable dish at Snaxx Point"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 1024px"
                   className="object-cover object-[78%_50%]"
                   priority
                 />

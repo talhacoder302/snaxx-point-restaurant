@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Offer } from "@/lib/offers";
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
 import Reveal from "./Reveal";
@@ -30,17 +31,29 @@ export default function OfferCard({ offer, delay = 0 }: OfferCardProps) {
 
         {/* Food visual */}
         <div className="relative grid h-44 place-items-center overflow-hidden">
-          <div
-            aria-hidden="true"
-            className="absolute h-32 w-32 rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(228,0,43,0.16),rgba(122,0,22,0.05)_45%,transparent_70%)] border border-ember/[0.12] transition-transform duration-500 group-hover:scale-110"
-          />
-          <span
-            role="img"
-            aria-label={offer.title}
-            className="relative select-none text-[64px] drop-shadow-[0_20px_25px_rgba(0,0,0,0.12)] transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3 animate-food-float"
-          >
-            {offer.emoji}
-          </span>
+          {offer.imagePath ? (
+            <Image
+              src={offer.imagePath}
+              alt={offer.title}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+          ) : (
+            <>
+              <div
+                aria-hidden="true"
+                className="absolute h-32 w-32 rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(228,0,43,0.16),rgba(122,0,22,0.05)_45%,transparent_70%)] border border-ember/[0.12] transition-transform duration-500 group-hover:scale-110"
+              />
+              <span
+                role="img"
+                aria-label={offer.title}
+                className="relative select-none text-[64px] drop-shadow-[0_20px_25px_rgba(0,0,0,0.12)] transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3 animate-food-float"
+              >
+                {offer.emoji}
+              </span>
+            </>
+          )}
         </div>
 
         {/* Content */}

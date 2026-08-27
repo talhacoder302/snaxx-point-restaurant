@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import type { Offer } from "@/lib/offers";
 import type { OfferFormState } from "@/app/admin/(dashboard)/offers/actions";
 
@@ -30,6 +30,12 @@ const inputClasses =
 
 export default function OfferForm({ action, offer, submitLabel }: OfferFormProps) {
   const [state, formAction, pending] = useActionState(action, undefined);
+  const [preview, setPreview] = useState<string | null>(offer?.imagePath ?? null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    setPreview(file ? URL.createObjectURL(file) : offer?.imagePath ?? null);
+  };
 
   return (
     <form action={formAction} className="mt-8 max-w-xl space-y-5">
@@ -52,12 +58,53 @@ export default function OfferForm({ action, offer, submitLabel }: OfferFormProps
         />
       </Field>
 
-      <Field label="Emoji">
+      <Field label="Emoji (used as a fallback if no image is set)">
         <input
           name="emoji"
           defaultValue={offer?.emoji ?? "🍽️"}
           className={`${inputClasses} max-w-[100px] text-center text-lg`}
         />
+      </Field>
+
+      <Field label="Image">
+        <div className="flex items-center gap-4">
+          {preview ? (
+            // eslint-disable-next-line @next/next/no-img-element -- admin-only preview, arbitrary uploaded/local paths
+            <img
+              src={preview}
+              alt="Offer preview"
+              className="h-16 w-16 shrink-0 rounded-[10px] border border-white/10 object-cover"
+            />
+          ) : (
+            <div className="grid h-16 w-16 shrink-0 place-items-center rounded-[10px] border border-dashed border-white/15 text-2xl">
+              {offer?.emoji ?? "🍽️"}
+            </div>
+          )}
+
+          <input
+            type="file"
+            name="imageFile"
+            accept="image/png,image/jpeg,image/webp,image/gif"
+            onChange={handleFileChange}
+            className="block w-full text-[13px] text-white/70 file:mr-3 file:rounded-[8px] file:border-0 file:bg-ember file:px-3.5 file:py-2 file:text-[13px] file:font-semibold file:text-white hover:file:bg-ember-dark"
+          />
+        </div>
+
+        <details className="mt-3 text-[12px] text-white/50">
+          <summary className="cursor-pointer select-none text-white/60 hover:text-white/80">
+            Or use an image already on the server
+          </summary>
+          <input
+            name="imagePath"
+            defaultValue={offer?.imagePath ?? ""}
+            placeholder="/offers/chicken-dabo.jpg"
+            className={`${inputClasses} mt-2`}
+          />
+          <p className="mt-1.5">
+            Ignored if you choose a file above. Leave both blank to show the
+            emoji instead.
+          </p>
+        </details>
       </Field>
 
       <div className="grid grid-cols-2 gap-4">

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Offer } from "@/lib/offers";
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
@@ -40,10 +41,22 @@ export default function FeaturedOffersBanner({ offers }: { offers: Offer[] }) {
         key={offer.id}
         className="animate-banner-fade grid gap-8 px-8 py-12 sm:grid-cols-[auto_1fr] sm:items-center sm:px-12 sm:py-14"
       >
-        <div className="mx-auto grid h-28 w-28 place-items-center rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(228,0,43,0.18),rgba(122,0,22,0.06)_45%,transparent_70%)] border border-ember/[0.15] sm:mx-0">
-          <span role="img" aria-label={offer.title} className="text-[56px]">
-            {offer.emoji}
-          </span>
+        <div className="relative mx-auto h-28 w-28 shrink-0 overflow-hidden rounded-full border border-ember/[0.15] sm:mx-0">
+          {offer.imagePath ? (
+            <Image
+              src={offer.imagePath}
+              alt={offer.title}
+              fill
+              sizes="112px"
+              className="object-cover"
+            />
+          ) : (
+            <div className="grid h-full w-full place-items-center bg-[radial-gradient(circle_at_50%_45%,rgba(228,0,43,0.18),rgba(122,0,22,0.06)_45%,transparent_70%)]">
+              <span role="img" aria-label={offer.title} className="text-[56px]">
+                {offer.emoji}
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="text-center sm:text-left">
