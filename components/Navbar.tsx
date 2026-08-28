@@ -36,10 +36,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-ink/[0.07] bg-cream/90 backdrop-blur-xl"
-          : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 border-b border-ink/[0.07] bg-cream/95 backdrop-blur-xl transition-shadow duration-300 ${
+        scrolled ? "shadow-sm" : ""
       }`}
     >
       <nav
@@ -104,7 +102,7 @@ export default function Navbar() {
             href={buildWhatsAppOrderLink("a meal")}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2.5 rounded-full border border-ink/10 bg-white px-4 py-2.5 text-[13px] font-semibold text-ink/90 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/40 hover:text-ink sm:inline-flex"
+            className="hidden items-center gap-2.5 rounded-full bg-ember px-4 py-2.5 text-[13px] font-semibold text-white shadow-[0_10px_25px_rgba(228,0,43,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-ember-dark sm:inline-flex"
           >
             <span className="h-2 w-2 rounded-full bg-[#7dfc98] shadow-[0_0_12px_#7dfc98]" />
             Order Now
