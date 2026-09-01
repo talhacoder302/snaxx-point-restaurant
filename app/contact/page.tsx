@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
+import ContactHero from "@/components/ContactHero";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { site } from "@/lib/site";
@@ -27,7 +27,7 @@ export default function ContactPage() {
       <Navbar />
 
       <main className="relative z-10 flex-1">
-        <PageHero
+        <ContactHero
           eyebrow="Contact"
           title={
             <>
@@ -36,12 +36,10 @@ export default function ContactPage() {
             </>
           }
           description="Questions, reservations, or ready to place an order? Reach out — we'd love to hear from you."
-          primaryCta={{ label: "Order on WhatsApp", href: buildWhatsAppOrderLink("a meal") }}
-          secondaryCta={{ label: "Call Now", href: site.phoneHref }}
         />
 
         {/* Contact info cards */}
-        <section className="relative py-20 sm:py-28">
+        <section className="relative bg-cream-deep py-20 sm:py-28">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <div className="grid gap-6 sm:grid-cols-2">
               {/* WhatsApp card */}
@@ -196,9 +194,22 @@ export default function ContactPage() {
         </section>
 
         {/* Opening hours + location */}
-        <section className="relative overflow-hidden py-20 sm:py-28">
+        <section className="relative overflow-hidden bg-ink py-20 sm:py-28">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ember/50 to-transparent"
+          />
           <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-            <div className="grid gap-6 lg:grid-cols-2">
+            <Reveal className="mx-auto max-w-2xl text-center">
+              <p className="text-[11px] font-bold uppercase tracking-[2px] text-ember-light">
+                Find & Visit
+              </p>
+              <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-black leading-[1.05] tracking-[-0.02em] text-white">
+                Hours <span className="text-gradient">& Location</span>
+              </h2>
+            </Reveal>
+
+            <div className="mt-14 grid gap-6 lg:grid-cols-2">
               {/* Opening hours */}
               <Reveal>
                 <div className="relative h-full overflow-hidden rounded-[22px] border border-ink/[0.07] bg-white p-8 backdrop-blur-md sm:p-10">
