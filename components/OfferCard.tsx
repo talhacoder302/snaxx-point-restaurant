@@ -12,10 +12,10 @@ export default function OfferCard({ offer, delay = 0 }: OfferCardProps) {
   return (
     <Reveal delay={delay} className="h-full">
       <article
-        className={`group relative flex h-full flex-col overflow-hidden rounded-[22px] border backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_70px_rgba(228,0,43,0.12)] ${
+        className={`group relative flex h-full flex-col overflow-hidden rounded-[22px] border bg-white backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_70px_rgba(228,0,43,0.12)] ${
           offer.featured
-            ? "border-ember/25 bg-gradient-to-br from-ember/[0.1] via-cream-deep/50 to-flame/[0.06] hover:border-ember/45"
-            : "border-ink/[0.07] bg-white hover:border-ember/25 hover:bg-cream-deep/50"
+            ? "border-ember/25 shadow-[0_14px_40px_rgba(228,0,43,0.08)] hover:border-ember/45"
+            : "border-ink/[0.07] hover:border-ember/25"
         }`}
       >
         {/* Top glow line */}
@@ -57,7 +57,7 @@ export default function OfferCard({ offer, delay = 0 }: OfferCardProps) {
         </div>
 
         {/* Content */}
-        <div className="flex flex-1 flex-col px-6 pb-6">
+        <div className="flex flex-1 flex-col px-6 pb-6 pt-5">
           <h3 className="text-lg font-bold text-ink">{offer.title}</h3>
 
           <p className="mt-2.5 flex-1 text-[14px] leading-[1.75] text-smoke">

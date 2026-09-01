@@ -4,11 +4,10 @@ import FeaturedOffersBanner from "@/components/FeaturedOffersBanner";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import OfferCard from "@/components/OfferCard";
-import PageHero from "@/components/PageHero";
+import OffersHero from "@/components/OffersHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { getOffers } from "@/lib/offers";
-import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Offers",
@@ -26,7 +25,7 @@ export default async function OffersPage() {
       <Navbar />
 
       <main className="relative z-10 flex-1">
-        <PageHero
+        <OffersHero
           eyebrow="Offers"
           title={
             <>
@@ -35,8 +34,6 @@ export default async function OffersPage() {
             </>
           }
           description="Great food deserves great prices. Explore our hand-picked combos and exclusive deals — available now and ready to order."
-          primaryCta={{ label: "Browse Offers", href: "#offers" }}
-          secondaryCta={{ label: "Order on WhatsApp", href: buildWhatsAppOrderLink("a meal") }}
         />
 
         {/* Big deals banner */}
@@ -49,7 +46,10 @@ export default async function OffersPage() {
         )}
 
         {/* Offers grid */}
-        <section id="offers" className="relative scroll-mt-24 py-20 sm:py-28">
+        <section
+          id="offers"
+          className="relative scroll-mt-24 bg-cream-deep py-20 sm:py-28"
+        >
           <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <SectionHeading
               eyebrow="Today's Deals"

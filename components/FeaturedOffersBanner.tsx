@@ -27,7 +27,7 @@ export default function FeaturedOffersBanner({ offers }: { offers: Offer[] }) {
 
   return (
     <div
-      className="relative mx-auto mt-14 max-w-4xl overflow-hidden rounded-[28px] border border-ember/25 bg-gradient-to-br from-ember/[0.1] via-cream-deep/50 to-flame/[0.06] backdrop-blur-md"
+      className="relative mx-auto my-14 max-w-4xl overflow-hidden rounded-[28px] border border-ember/25 bg-gradient-to-br from-ember/[0.1] via-cream-deep/50 to-flame/[0.06] shadow-[0_25px_70px_rgba(228,0,43,0.1)] backdrop-blur-md sm:my-16"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
