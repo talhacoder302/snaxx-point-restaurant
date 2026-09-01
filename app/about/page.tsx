@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import AboutHero from "@/components/AboutHero";
 import ContactCTA from "@/components/ContactCTA";
 import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
@@ -47,25 +47,27 @@ export default function AboutPage() {
       <Navbar />
 
       <main className="relative z-10 flex-1">
-        <Hero />
+        <AboutHero />
 
         {/* Story section */}
-        <section className="relative overflow-hidden py-24 sm:py-32">
-          <div className="relative mx-auto max-w-5xl px-5 sm:px-8 lg:px-10">
-            {/* Visual */}
-            <Reveal>
-              <div className="relative h-[220px] w-full overflow-hidden rounded-[28px] border border-ink/[0.07] shadow-[0_20px_60px_rgba(0,0,0,0.08)] sm:h-[300px] lg:h-[360px]">
-                <Image
-                  src="/about.jpg"
-                  alt="A wok-fried chicken and vegetable dish at Snaxx Point"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 1024px"
-                  className="object-cover object-[78%_50%]"
-                  priority
-                />
+        <section className="relative overflow-hidden bg-cream-deep py-24 sm:py-32">
+          <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+            <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+              {/* Visual */}
+              <Reveal from="left" className="relative mx-auto w-full max-w-[520px] lg:max-w-none">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[28px] border border-ink/[0.07] shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+                  <Image
+                    src="/about.jpg"
+                    alt="A wok-fried chicken and vegetable dish at Snaxx Point"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover object-[78%_50%]"
+                    priority
+                  />
+                </div>
 
                 {/* Floating mini card */}
-                <div className="glass-panel absolute bottom-5 left-5 rounded-[15px] px-4 py-3.5 shadow-[0_18px_50px_rgba(0,0,0,0.15)] animate-mini-float">
+                <div className="glass-panel absolute -bottom-6 left-6 rounded-[15px] px-4 py-3.5 shadow-[0_18px_50px_rgba(0,0,0,0.15)] animate-mini-float sm:left-10">
                   <p className="text-[10px] uppercase tracking-[1.5px] text-mist">
                     At Snaxx Point
                   </p>
@@ -73,41 +75,36 @@ export default function AboutPage() {
                     Every Bite, Pure Delight!
                   </p>
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
 
-            {/* Content */}
-            <div className="mx-auto mt-12 max-w-2xl text-center">
-              <SectionHeading
-                eyebrow="Our Story"
-                title={
-                  <>
-                    Built On Good Food
-                    <span className="block text-gradient">& Great Times</span>
-                  </>
-                }
-              />
+              {/* Content */}
+              <Reveal from="right" delay={100}>
+                <SectionHeading
+                  align="left"
+                  eyebrow="Our Story"
+                  title={
+                    <>
+                      Built On Good Food
+                      <span className="block text-gradient">& Great Times</span>
+                    </>
+                  }
+                />
 
-              <Reveal delay={150}>
-                <p className="mt-6 text-[15.5px] leading-[1.85] text-smoke">
+                <p className="mt-6 max-w-lg text-[15.5px] leading-[1.85] text-smoke">
                   Snaxx Point Restaurant started with a simple idea: everyone
                   deserves a meal that feels special. Not complicated. Not
                   overdone. Just honest, delicious food made with real care.
                 </p>
-              </Reveal>
 
-              <Reveal delay={250}>
-                <p className="mt-5 text-[15.5px] leading-[1.85] text-smoke">
+                <p className="mt-5 max-w-lg text-[15.5px] leading-[1.85] text-smoke">
                   Our menu is built around fresh ingredients, bold flavours,
                   and generous portions — the kind of food that makes you want
                   to come back for more. And because great meals are better
                   shared, our doors are open for friends and family to gather,
                   relax, and enjoy the moment.
                 </p>
-              </Reveal>
 
-              <Reveal delay={350}>
-                <div className="mt-8 flex flex-wrap justify-center gap-3">
+                <div className="mt-9 flex flex-wrap gap-3">
                   <Link
                     href="/offers"
                     className="inline-flex min-h-[50px] items-center justify-center gap-2.5 rounded-[13px] bg-ember px-6 text-sm font-bold text-white shadow-[0_14px_35px_rgba(228,0,43,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-ember-dark hover:shadow-[0_18px_42px_rgba(228,0,43,0.3)]"
@@ -125,41 +122,45 @@ export default function AboutPage() {
         <section className="relative overflow-hidden py-24 sm:py-32">
           <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <Reveal>
-              <div className="relative overflow-hidden rounded-[28px] border border-ink/[0.07] bg-white px-6 py-16 text-center shadow-[0_10px_40px_rgba(0,0,0,0.04)] sm:px-12 sm:py-20">
-                {/* Inner glow ring */}
+              <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-ink px-6 py-16 text-center shadow-[0_30px_80px_rgba(0,0,0,0.35)] sm:px-12 sm:py-20">
+                {/* Decorative glow */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -top-24 left-1/2 h-[320px] w-[560px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(228,0,43,0.3),transparent_70%)] blur-2xl"
+                />
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-ember/60 to-transparent"
                 />
 
-                <div className="inline-flex items-center gap-2.5 rounded-full border border-ember/20 bg-ember/[0.06] px-4 py-2 text-[11px] font-bold uppercase tracking-[1.8px] text-ember-light">
+                <div className="relative inline-flex items-center gap-2.5 rounded-full border border-ember/25 bg-ember/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[1.8px] text-ember-light">
                   <span className="h-1.5 w-1.5 rounded-full bg-ember shadow-[0_0_12px_#e4002b] animate-pulse-dot" />
                   Our Philosophy
                 </div>
 
-                <h2 className="mx-auto mt-7 max-w-2xl font-display text-[clamp(2.2rem,5vw,4rem)] font-black leading-[1.05] tracking-[-0.02em] text-ink">
+                <h2 className="relative mx-auto mt-7 max-w-2xl font-display text-[clamp(2.2rem,5vw,4rem)] font-black leading-[1.05] tracking-[-0.02em] text-white">
                   Fresh Ingredients.
                   <span className="block text-gradient">Honest Flavours.</span>
                 </h2>
 
-                <p className="mx-auto mt-6 max-w-[560px] text-[16px] leading-[1.8] text-smoke">
+                <p className="relative mx-auto mt-6 max-w-[560px] text-[16px] leading-[1.8] text-white/60">
                   We believe the best meals start with the best ingredients.
                   {"That's"} why freshness is at the heart of everything we do —
                   from the produce we choose to the moment your plate is served.
                 </p>
 
-                <div className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
+                <div className="relative mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
                   {[
                     { icon: "🌿", label: "Fresh Ingredients" },
                     { icon: "👨‍🍳", label: "Prepared Daily" },
                     { icon: "🍽️", label: "Served With Pride" },
                   ].map((item, index) => (
                     <Reveal key={item.label} delay={index * 120}>
-                      <div className="rounded-[16px] border border-ink/[0.07] bg-white px-4 py-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-ember/25">
+                      <div className="rounded-[16px] border border-white/10 bg-white/[0.04] px-4 py-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-ember/35 hover:bg-white/[0.07]">
                         <span className="text-2xl" role="img" aria-hidden="true">
                           {item.icon}
                         </span>
-                        <p className="mt-3 text-[13px] font-bold text-ink">
+                        <p className="mt-3 text-[13px] font-bold text-white">
                           {item.label}
                         </p>
                       </div>
@@ -172,7 +173,7 @@ export default function AboutPage() {
         </section>
 
         {/* Values grid */}
-        <section className="relative py-24 sm:py-32">
+        <section className="relative bg-cream-deep py-24 sm:py-32">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <SectionHeading
               eyebrow="What We Stand For"
@@ -187,7 +188,7 @@ export default function AboutPage() {
             <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {values.map((value, index) => (
                 <Reveal key={value.title} delay={index * 120}>
-                  <article className="group relative h-full overflow-hidden rounded-[20px] border border-ink/[0.07] bg-white p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-ember/25 hover:bg-cream-deep/50 hover:shadow-[0_20px_60px_rgba(228,0,43,0.08)]">
+                  <article className="group relative h-full overflow-hidden rounded-[20px] border border-ink/[0.07] bg-white p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-ember/25 hover:shadow-[0_20px_60px_rgba(228,0,43,0.08)]">
                     {/* Top glow line */}
                     <span
                       aria-hidden="true"
