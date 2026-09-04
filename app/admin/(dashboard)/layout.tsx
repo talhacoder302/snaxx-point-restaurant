@@ -10,9 +10,26 @@ export default function AdminDashboardLayout({
     <div className="min-h-screen bg-ink">
       <header className="border-b border-white/[0.08] bg-white/[0.03]">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
-          <Link href="/admin" className="font-display text-lg font-black text-white">
-            Snaxx Point <span className="text-ember">Admin</span>
-          </Link>
+          <div className="flex items-center gap-6">
+            <Link href="/admin" className="font-display text-lg font-black text-white">
+              Snaxx Point <span className="text-ember">Admin</span>
+            </Link>
+
+            <nav className="flex items-center gap-4">
+              <Link
+                href="/admin"
+                className="text-[13px] font-semibold text-white/70 transition-colors hover:text-white"
+              >
+                Offers
+              </Link>
+              <Link
+                href="/admin/menu"
+                className="text-[13px] font-semibold text-white/70 transition-colors hover:text-white"
+              >
+                Menu
+              </Link>
+            </nav>
+          </div>
 
           <form action={logout}>
             <button
