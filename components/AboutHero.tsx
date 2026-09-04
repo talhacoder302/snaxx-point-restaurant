@@ -1,4 +1,5 @@
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
+import WhatsAppIcon from "./icons/WhatsAppIcon";
 import Reveal from "./Reveal";
 
 export default function AboutHero() {
@@ -16,7 +17,7 @@ export default function AboutHero() {
 
       <div className="relative mx-auto flex min-h-[56vh] max-w-3xl flex-col items-center justify-center px-5 py-20 text-center sm:px-8">
         <Reveal>
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-ember/25 bg-ember/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[1.8px] text-ember-light">
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-ember/25 bg-ember/10 px-4 py-2 text-sm font-bold uppercase tracking-[1.8px] text-ember-light">
             <span className="h-1.5 w-1.5 rounded-full bg-ember shadow-[0_0_12px_#e4002b] animate-pulse-dot" />
             About Us
           </div>
@@ -41,9 +42,10 @@ export default function AboutHero() {
             href={buildWhatsAppOrderLink("a meal")}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-10 inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-[13px] bg-ember px-7 text-sm font-bold text-white shadow-[0_14px_35px_rgba(228,0,43,0.3)] transition-all duration-300 hover:-translate-y-1 hover:bg-ember-dark hover:shadow-[0_18px_42px_rgba(228,0,43,0.4)]"
+            className="group mt-10 inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-[13px] bg-ember px-7 text-sm font-bold text-white shadow-[0_14px_35px_rgba(228,0,43,0.3)] transition-all duration-300 hover:-translate-y-1 hover:bg-ember-dark hover:shadow-[0_18px_42px_rgba(228,0,43,0.4)]"
           >
-            💬 Order on WhatsApp
+            <WhatsAppIcon circle className="h-4 w-4" circleClassName="h-8 w-8" />
+            Order on WhatsApp
           </a>
         </Reveal>
       </div>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
+import WhatsAppIcon from "./icons/WhatsAppIcon";
 
 type BannerSlide = {
   id: string;
@@ -140,7 +141,7 @@ export default function HomeBanner() {
           key={`content-${slide.id}`}
           className="absolute inset-0 flex flex-col items-center justify-end gap-4 px-6 pb-16 text-center animate-banner-fade sm:pb-24"
         >
-          <span className="rounded-full bg-ember px-4 py-1.5 text-[11px] font-bold uppercase tracking-[1.8px] text-white shadow-[0_10px_25px_rgba(228,0,43,0.3)]">
+          <span className="rounded-full bg-ember px-4 py-1.5 text-sm font-bold uppercase tracking-[1.8px] text-white shadow-[0_10px_25px_rgba(228,0,43,0.3)]">
             {slide.eyebrow}
           </span>
 
@@ -180,7 +181,8 @@ export default function HomeBanner() {
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-[13px] border border-white/25 bg-white/[0.06] px-7 text-sm font-bold text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/50 hover:bg-white/[0.12]"
               >
-                💬 Order on WhatsApp
+                <WhatsAppIcon className="h-[18px] w-[18px]" />
+                Order on WhatsApp
               </a>
             )}
           </div>

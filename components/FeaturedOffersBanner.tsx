@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Offer } from "@/lib/offers";
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
+import WhatsAppIcon from "./icons/WhatsAppIcon";
 
 const AUTO_ADVANCE_MS = 5000;
 
@@ -86,9 +87,9 @@ export default function FeaturedOffersBanner({ offers }: { offers: Offer[] }) {
               href={buildWhatsAppOrderLink(offer.title)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-[12px] bg-ember px-5 text-[13px] font-bold text-white shadow-[0_12px_30px_rgba(228,0,43,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-ember-dark"
+              className="group inline-flex min-h-[44px] items-center gap-2 rounded-[12px] bg-ember px-5 text-[13px] font-bold text-white shadow-[0_12px_30px_rgba(228,0,43,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-ember-dark"
             >
-              <span aria-hidden="true">💬</span>
+              <WhatsAppIcon circle className="h-3.5 w-3.5" circleClassName="h-6 w-6" />
               {offer.ctaLabel}
             </a>
           </div>

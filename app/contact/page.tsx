@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import PhoneIcon from "@/components/icons/PhoneIcon";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import { site } from "@/lib/site";
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
 
@@ -55,8 +57,8 @@ export default function ContactPage() {
                     className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-ember/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   />
 
-                  <span className="grid h-14 w-14 place-items-center rounded-2xl border border-ember/15 bg-ember/[0.07] text-2xl shadow-[0_0_30px_rgba(228,0,43,0.06)] transition-transform duration-300 group-hover:scale-110">
-                    💬
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl border border-ember/15 bg-ember/[0.07] text-2xl text-ember-light shadow-[0_0_30px_rgba(228,0,43,0.06)] transition-transform duration-300 group-hover:scale-110">
+                    <WhatsAppIcon className="h-7 w-7" />
                   </span>
 
                   <h2 className="mt-6 text-lg font-bold text-ink">
@@ -86,8 +88,8 @@ export default function ContactPage() {
                     className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-ember/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   />
 
-                  <span className="grid h-14 w-14 place-items-center rounded-2xl border border-ember/15 bg-ember/[0.07] text-2xl shadow-[0_0_30px_rgba(228,0,43,0.06)] transition-transform duration-300 group-hover:scale-110">
-                    ☎
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl border border-ember/15 bg-ember/[0.07] text-ember-light shadow-[0_0_30px_rgba(228,0,43,0.06)] transition-transform duration-300 group-hover:scale-110">
+                    <PhoneIcon className="h-7 w-7" />
                   </span>
 
                   <h2 className="mt-6 text-lg font-bold text-ink">
@@ -136,7 +138,7 @@ export default function ContactPage() {
                       className="group flex items-center gap-4 rounded-[16px] border border-ink/[0.07] bg-white px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/25"
                     >
                       <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-ember/15 bg-ember/[0.07] text-lg text-ember-light">
-                        💬
+                        <WhatsAppIcon className="h-5 w-5" />
                       </span>
                       <span>
                         <span className="block text-[11px] font-bold uppercase tracking-[1.5px] text-mist">
@@ -152,8 +154,8 @@ export default function ContactPage() {
                       href={site.phoneHref}
                       className="group flex items-center gap-4 rounded-[16px] border border-ink/[0.07] bg-white px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/25"
                     >
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-ember/15 bg-ember/[0.07] text-lg text-ember-light">
-                        ☎
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-ember/15 bg-ember/[0.07] text-ember-light">
+                        <PhoneIcon className="h-5 w-5" />
                       </span>
                       <span>
                         <span className="block text-[11px] font-bold uppercase tracking-[1.5px] text-mist">
@@ -201,7 +203,7 @@ export default function ContactPage() {
           />
           <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <Reveal className="mx-auto max-w-2xl text-center">
-              <p className="text-[11px] font-bold uppercase tracking-[2px] text-ember-light">
+              <p className="text-sm font-bold uppercase tracking-[2px] text-ember-light">
                 Find & Visit
               </p>
               <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-black leading-[1.05] tracking-[-0.02em] text-white">

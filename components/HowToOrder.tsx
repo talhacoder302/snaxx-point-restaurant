@@ -1,4 +1,5 @@
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
+import WhatsAppIcon from "./icons/WhatsAppIcon";
 import Reveal from "./Reveal";
 
 const steps = [
@@ -8,7 +9,7 @@ const steps = [
     description: "Check out our offers and pick whatever's calling your name.",
   },
   {
-    icon: "💬",
+    icon: <WhatsAppIcon className="h-6 w-6" />,
     title: "Message Us On WhatsApp",
     description: "Tap Order Now — your request lands with us instantly, no app needed.",
   },
@@ -17,7 +18,7 @@ const steps = [
     title: "Sit Back & Enjoy",
     description: "We fire it up fresh and get it ready for you, just like that.",
   },
-] as const;
+];
 
 export default function HowToOrder() {
   return (
@@ -29,7 +30,7 @@ export default function HowToOrder() {
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-[11px] font-bold uppercase tracking-[2px] text-ember-light">
+          <p className="text-sm font-bold uppercase tracking-[2px] text-ember-light">
             How It Works
           </p>
           <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-black leading-[1.05] tracking-[-0.02em] text-white">
@@ -79,9 +80,9 @@ export default function HowToOrder() {
             href={buildWhatsAppOrderLink("a meal")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-[13px] bg-ember px-7 text-sm font-bold text-white shadow-[0_14px_35px_rgba(228,0,43,0.3)] transition-all duration-300 hover:-translate-y-1 hover:bg-ember-dark hover:shadow-[0_18px_42px_rgba(228,0,43,0.4)]"
+            className="group inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-[13px] bg-ember px-7 text-sm font-bold text-white shadow-[0_14px_35px_rgba(228,0,43,0.3)] transition-all duration-300 hover:-translate-y-1 hover:bg-ember-dark hover:shadow-[0_18px_42px_rgba(228,0,43,0.4)]"
           >
-            <span aria-hidden="true">💬</span>
+            <WhatsAppIcon circle className="h-4 w-4" circleClassName="h-8 w-8" />
             Start An Order
           </a>
         </Reveal>

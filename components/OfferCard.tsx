@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Offer } from "@/lib/offers";
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
+import WhatsAppIcon from "./icons/WhatsAppIcon";
 import Reveal from "./Reveal";
 
 type OfferCardProps = {
@@ -85,7 +86,11 @@ export default function OfferCard({ offer, delay = 0 }: OfferCardProps) {
                 : "border border-ink/10 bg-white text-ink/95 backdrop-blur-md hover:border-ember/35 hover:bg-ember/[0.06]"
             }`}
           >
-            <span aria-hidden="true">💬</span>
+            {offer.featured ? (
+              <WhatsAppIcon circle className="h-3.5 w-3.5" circleClassName="h-6 w-6" />
+            ) : (
+              <WhatsAppIcon className="h-4 w-4" />
+            )}
             {offer.ctaLabel}
           </a>
         </div>

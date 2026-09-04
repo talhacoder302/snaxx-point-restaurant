@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { site } from "@/lib/site";
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
+import PhoneIcon from "./icons/PhoneIcon";
+import WhatsAppIcon from "./icons/WhatsAppIcon";
 import Reveal from "./Reveal";
 
 export default function ContactCTA() {
@@ -22,7 +24,7 @@ export default function ContactCTA() {
             />
 
             <div className="relative">
-              <p className="text-[11px] font-bold uppercase tracking-[2px] text-ember-light">
+              <p className="text-sm font-bold uppercase tracking-[2px] text-ember-light">
                 Get In Touch
               </p>
 
@@ -42,12 +44,7 @@ export default function ContactCTA() {
                   rel="noopener noreferrer"
                   className="group inline-flex min-h-[56px] w-full items-center justify-center gap-3 rounded-[14px] bg-ember px-8 text-sm font-bold text-white shadow-[0_14px_35px_rgba(228,0,43,0.3)] transition-all duration-300 hover:-translate-y-1 hover:bg-ember-dark hover:shadow-[0_18px_42px_rgba(228,0,43,0.4)] sm:w-auto"
                 >
-                  <span
-                    aria-hidden="true"
-                    className="grid h-8 w-8 place-items-center rounded-full bg-white/20 text-base"
-                  >
-                    💬
-                  </span>
+                  <WhatsAppIcon circle className="h-4 w-4" circleClassName="h-8 w-8" />
                   Order on WhatsApp
                 </a>
 
@@ -57,9 +54,9 @@ export default function ContactCTA() {
                 >
                   <span
                     aria-hidden="true"
-                    className="grid h-8 w-8 place-items-center rounded-full border border-white/15 bg-white/10 text-base text-ember-light"
+                    className="grid h-8 w-8 place-items-center rounded-full border border-white/15 bg-white/10 text-ember-light"
                   >
-                    ☎
+                    <PhoneIcon className="h-4 w-4" />
                   </span>
                   {site.phoneDisplay}
                 </a>

@@ -21,7 +21,7 @@ export default function PageHero({
     <section className="relative flex min-h-[70vh] items-center overflow-hidden pt-[72px]">
       <div className="relative mx-auto w-full max-w-7xl px-5 py-20 text-center sm:px-8 lg:px-10">
         <Reveal>
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-ember/20 bg-ember/[0.06] px-4 py-2 text-[11px] font-bold uppercase tracking-[1.8px] text-ember-light">
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-ember/20 bg-ember/[0.06] px-4 py-2 text-sm font-bold uppercase tracking-[1.8px] text-ember-light">
             <span className="h-1.5 w-1.5 rounded-full bg-ember shadow-[0_0_12px_#e4002b] animate-pulse-dot" />
             {eyebrow}
           </div>
