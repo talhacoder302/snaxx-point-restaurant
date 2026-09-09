@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { navLinks, site } from "@/lib/site";
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
+import EmailIcon from "./icons/EmailIcon";
 import PhoneIcon from "./icons/PhoneIcon";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 
@@ -67,7 +68,7 @@ export default function Footer() {
             title="Email"
             className="grid h-8 w-8 place-items-center rounded-[9px] border border-ink/10 text-mist transition-all duration-200 hover:-translate-y-0.5 hover:border-ember/30 hover:text-ember-light"
           >
-            ✉
+            <EmailIcon className="h-4 w-4" />
           </a>
         </div>
       </div>
