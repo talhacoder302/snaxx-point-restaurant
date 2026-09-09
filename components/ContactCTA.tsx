@@ -24,7 +24,7 @@ export default function ContactCTA() {
             />
 
             <div className="relative">
-              <p className="text-sm font-bold uppercase tracking-[2px] text-ember-light">
+              <p className="text-base font-bold uppercase tracking-[2px] text-ember-glow">
                 Get In Touch
               </p>
 
@@ -42,7 +42,7 @@ export default function ContactCTA() {
                   href={buildWhatsAppOrderLink("a meal")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex min-h-[56px] w-full items-center justify-center gap-3 rounded-[14px] bg-ember px-8 text-sm font-bold text-white shadow-[0_14px_35px_rgba(228,0,43,0.3)] transition-all duration-300 hover:-translate-y-1 hover:bg-ember-dark hover:shadow-[0_18px_42px_rgba(228,0,43,0.4)] sm:w-auto"
+                  className="group inline-flex min-h-[56px] w-full items-center justify-center gap-3 rounded-[14px] bg-white px-8 text-sm font-bold text-neutral-900 shadow-[0_14px_35px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-1 hover:bg-white/90 sm:w-auto"
                 >
                   <WhatsAppIcon circle className="h-4 w-4" circleClassName="h-8 w-8" />
                   Order on WhatsApp

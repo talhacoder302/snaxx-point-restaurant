@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "./Reveal";
+import ClockIcon from "./icons/ClockIcon";
 
 export default function PromoBanner() {
   return (
@@ -23,8 +24,8 @@ export default function PromoBanner() {
         {/* Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6 text-center">
           <Reveal>
-            <span className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-[1.8px] text-white backdrop-blur-md">
-              <span className="h-1.5 w-1.5 rounded-full bg-ember shadow-[0_0_12px_#e4002b] animate-pulse-dot" />
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-base font-bold uppercase tracking-[1.8px] text-white backdrop-blur-md">
+              <ClockIcon className="h-4 w-4 text-white" />
               Limited Time
             </span>
           </Reveal>

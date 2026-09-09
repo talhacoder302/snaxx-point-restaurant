@@ -36,7 +36,7 @@ export default function CraftSpotlight() {
 
           {/* ── Text ─────────────────────────── */}
           <Reveal from="right" delay={100}>
-            <p className="text-sm font-bold uppercase tracking-[2px] text-ember-light">
+            <p className="text-base font-bold uppercase tracking-[2px] text-ember-glow">
               Behind Every Dish
             </p>
 

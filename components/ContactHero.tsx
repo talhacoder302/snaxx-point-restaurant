@@ -26,7 +26,7 @@ export default function ContactHero({ eyebrow, title, description }: ContactHero
 
       <div className="relative mx-auto flex min-h-[56vh] max-w-3xl flex-col items-center justify-center px-5 py-20 text-center sm:px-8">
         <Reveal>
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-ember/25 bg-ember/10 px-4 py-2 text-sm font-bold uppercase tracking-[1.8px] text-ember-light">
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white px-4 py-2 text-base font-bold uppercase tracking-[1.8px] text-ember-light">
             <span className="h-1.5 w-1.5 rounded-full bg-ember shadow-[0_0_12px_#e4002b] animate-pulse-dot" />
             {eyebrow}
           </div>

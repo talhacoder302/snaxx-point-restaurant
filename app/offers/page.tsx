@@ -26,6 +26,7 @@ export default async function OffersPage() {
 
       <main className="relative z-10 flex-1">
         <OffersHero
+          badgeVariant="light"
           eyebrow="Offers"
           title={
             <>

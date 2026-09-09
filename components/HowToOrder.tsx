@@ -30,7 +30,7 @@ export default function HowToOrder() {
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-bold uppercase tracking-[2px] text-ember-light">
+          <p className="text-base font-bold uppercase tracking-[2px] text-ember-glow">
             How It Works
           </p>
           <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-black leading-[1.05] tracking-[-0.02em] text-white">

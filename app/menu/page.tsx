@@ -23,6 +23,7 @@ export default async function MenuPage() {
 
       <main className="relative z-10 flex-1">
         <OffersHero
+          badgeVariant="light"
           eyebrow="Our Menu"
           title={
             <>
