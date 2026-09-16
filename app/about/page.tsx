@@ -4,6 +4,7 @@ import Link from "next/link";
 import AboutHero from "@/components/AboutHero";
 import ContactCTA from "@/components/ContactCTA";
 import Footer from "@/components/Footer";
+import HowToOrder from "@/components/HowToOrder";
 import Navbar from "@/components/Navbar";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
@@ -213,6 +214,7 @@ export default function AboutPage() {
           </div>
         </section>
 
+        <HowToOrder />
         <ContactCTA />
       </main>
 
