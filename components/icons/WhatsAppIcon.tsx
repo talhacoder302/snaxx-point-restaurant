@@ -30,7 +30,7 @@ export default function WhatsAppIcon({
   return (
     <span
       aria-hidden="true"
-      className={`inline-grid shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#31E17B] to-[#1DA851] shadow-[0_6px_18px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover:scale-110 ${circleClassName}`}
+      className={`inline-grid shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#31E17B] to-[#1DA851] transition-transform duration-300 group-hover:scale-110 ${circleClassName}`}
     >
       {glyph}
     </span>

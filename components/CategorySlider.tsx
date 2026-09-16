@@ -77,9 +77,9 @@ export default function CategorySlider({ category, delay = 0 }: CategorySliderPr
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Order ${item.name} on WhatsApp`}
-                      className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ember text-white shadow-[0_8px_20px_rgba(228,0,43,0.25)] transition-colors hover:bg-ember-dark"
+                      className="shrink-0"
                     >
-                      <WhatsAppIcon className="h-4 w-4" />
+                      <WhatsAppIcon circle className="h-4 w-4" circleClassName="h-8 w-8" />
                     </a>
                   </div>
                 </div>
