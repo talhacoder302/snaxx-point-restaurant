@@ -25,36 +25,21 @@ export default function CategorySlider({ category, delay = 0 }: CategorySliderPr
   return (
     <Reveal delay={delay}>
       <div id={category.id} className="scroll-mt-28">
-        {/* Diagonal banner header — official ember/flame palette */}
-        <div className="relative overflow-hidden rounded-[18px] bg-gradient-to-br from-ember-light via-ember to-flame shadow-[0_16px_40px_rgba(228,0,43,0.22)]">
-          <span
-            aria-hidden="true"
-            className="absolute inset-0 [clip-path:polygon(0_0,62%_0,48%_100%,0_100%)] bg-white/[0.06]"
-          />
-          <span
-            aria-hidden="true"
-            className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent"
-          />
+        <h3 className="font-display text-[clamp(1.9rem,5vw,3rem)] font-black leading-[1.05] tracking-[-0.02em] text-ink">
+          {category.name}
+        </h3>
 
-          <div className="relative flex items-center justify-between gap-6 px-6 py-6 sm:px-10 sm:py-8">
-            <h3 className="font-display text-[clamp(1.9rem,5vw,3rem)] font-black leading-[1.05] tracking-[-0.02em] text-white">
-              {category.name}
-            </h3>
-
-            {category.bannerImagePath && (
-              <div className="relative h-16 w-20 shrink-0 overflow-hidden rounded-[12px] border border-white/20 sm:h-28 sm:w-40 sm:rounded-[14px]">
-                <Image
-                  src={category.bannerImagePath}
-                  alt=""
-                  aria-hidden="true"
-                  fill
-                  sizes="(max-width: 640px) 80px, 160px"
-                  className="object-cover"
-                />
-              </div>
-            )}
+        {category.bannerImagePath && (
+          <div className="relative mt-5 h-48 w-full overflow-hidden rounded-[18px] sm:h-64 lg:h-72">
+            <Image
+              src={category.bannerImagePath}
+              alt={category.name}
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
           </div>
-        </div>
+        )}
 
         {/* Horizontal item slider */}
         <div className="relative mt-5">
