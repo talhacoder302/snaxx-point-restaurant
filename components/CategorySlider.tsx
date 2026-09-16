@@ -30,13 +30,14 @@ export default function CategorySlider({ category, delay = 0 }: CategorySliderPr
         </h3>
 
         {category.bannerImagePath && (
-          <div className="relative mt-5 h-48 w-full overflow-hidden rounded-[18px] sm:h-64 lg:h-72">
+          <div className="mt-5 overflow-hidden rounded-[18px]">
             <Image
               src={category.bannerImagePath}
               alt={category.name}
-              fill
+              width={1600}
+              height={640}
               sizes="100vw"
-              className="object-cover"
+              className="h-auto w-full"
             />
           </div>
         )}
