@@ -6,7 +6,7 @@ import { site } from "./site";
  * and every WhatsApp button across the website updates automatically.
  */
 export function buildWhatsAppOrderLink(offerName: string): string {
-  const message = `Hello ${site.name} Restaurant, I would like to order the ${offerName}. Please share the details. Thank you!`;
+  const message = `Hello ${site.name} Restaurant, I would like to order the *${offerName}*. Please share the details. Thank you!`;
   const encodedMessage = encodeURIComponent(message);
   return `https://wa.me/${site.whatsappNumber}?text=${encodedMessage}`;
 }

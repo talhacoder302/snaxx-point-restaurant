@@ -45,12 +45,12 @@ export default function CategorySlider({ category, delay = 0 }: CategorySliderPr
         <div className="relative mt-5">
           <div
             ref={trackRef}
-            className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pt-2 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {category.items.map((item) => (
               <article
                 key={item.id}
-                className="group relative flex w-[180px] shrink-0 snap-start flex-col overflow-hidden rounded-[16px] border border-ink/[0.07] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-ember/25 hover:shadow-[0_18px_45px_rgba(228,0,43,0.1)] sm:w-[210px]"
+                className="group relative flex w-[180px] shrink-0 snap-start flex-col overflow-hidden rounded-[16px] border border-ink/[0.07] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-ember/25 hover:shadow-[0_10px_24px_rgba(228,0,43,0.12)] sm:w-[210px]"
               >
                 <div className="relative h-32 w-full overflow-hidden bg-cream-deep sm:h-36">
                   {item.imagePath ? (
