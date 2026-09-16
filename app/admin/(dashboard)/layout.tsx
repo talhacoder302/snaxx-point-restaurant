@@ -26,7 +26,7 @@ export default function AdminDashboardLayout({
                 href="/admin/menu"
                 className="text-[13px] font-semibold text-white/70 transition-colors hover:text-white"
               >
-                Menu
+                Products
               </Link>
             </nav>
           </div>

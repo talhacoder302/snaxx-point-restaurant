@@ -9,13 +9,13 @@ export default async function AdminMenuPage() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h1 className="font-display text-2xl font-black text-white">Menu</h1>
+        <h1 className="font-display text-2xl font-black text-white">Products</h1>
         <div className="flex items-center gap-2.5">
           <Link
             href="/admin/menu/items/new"
             className="rounded-[10px] border border-white/10 bg-white/[0.04] px-4 py-2.5 text-[13px] font-semibold text-white/85 transition-colors hover:border-ember/40"
           >
-            + Add Item
+            + Add Product
           </Link>
           <Link
             href="/admin/menu/categories/new"
@@ -47,20 +47,21 @@ export default async function AdminMenuPage() {
                     action={deleteCategory}
                     hiddenFieldName="categoryId"
                     hiddenFieldValue={category.id}
-                    confirmMessage={`Delete "${category.name}" and all its items? This cannot be undone.`}
+                    confirmMessage={`Delete "${category.name}" and all its products? This cannot be undone.`}
                   />
                 </div>
               </div>
 
               {category.items.length === 0 ? (
-                <p className="px-4 py-4 text-[13.5px] text-smoke">No items in this category yet.</p>
+                <p className="px-4 py-4 text-[13.5px] text-smoke">No products in this category yet.</p>
               ) : (
                 <table className="w-full text-left text-[13.5px]">
                   <thead className="text-[12px] uppercase tracking-wide text-smoke">
                     <tr>
-                      <th className="px-4 py-2.5">Item</th>
+                      <th className="px-4 py-2.5">Product</th>
                       <th className="px-4 py-2.5">Price</th>
                       <th className="px-4 py-2.5">Available</th>
+                      <th className="px-4 py-2.5">Featured</th>
                       <th className="px-4 py-2.5" />
                     </tr>
                   </thead>
@@ -70,6 +71,7 @@ export default async function AdminMenuPage() {
                         <td className="px-4 py-3 text-white">{item.name}</td>
                         <td className="px-4 py-3 text-ember">{item.price}</td>
                         <td className="px-4 py-3 text-smoke">{item.available ? "Yes" : "—"}</td>
+                        <td className="px-4 py-3 text-smoke">{item.featured ? "Yes" : "—"}</td>
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
                             <Link

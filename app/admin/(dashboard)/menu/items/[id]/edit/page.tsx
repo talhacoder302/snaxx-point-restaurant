@@ -17,7 +17,7 @@ export default async function EditMenuItemPage({
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-black text-white">Edit Item</h1>
+      <h1 className="font-display text-2xl font-black text-white">Edit Product</h1>
       <MenuItemForm
         action={updateItem.bind(null, id)}
         categories={categories}

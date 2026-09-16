@@ -7,13 +7,13 @@ export default async function NewMenuItemPage() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-black text-white">Add Item</h1>
+      <h1 className="font-display text-2xl font-black text-white">Add Product</h1>
       {categories.length === 0 ? (
         <p className="mt-8 text-[14px] text-smoke">
-          Add a category first before adding items.
+          Add a category first before adding products.
         </p>
       ) : (
-        <MenuItemForm action={createItem} categories={categories} submitLabel="Create Item" />
+        <MenuItemForm action={createItem} categories={categories} submitLabel="Create Product" />
       )}
     </div>
   );

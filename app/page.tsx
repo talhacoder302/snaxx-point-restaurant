@@ -5,12 +5,16 @@ import FeatureCards from "@/components/FeatureCards";
 import Footer from "@/components/Footer";
 import HighlightStrip from "@/components/HighlightStrip";
 import HomeBanner from "@/components/HomeBanner";
+import HomeMenuShowcase from "@/components/HomeMenuShowcase";
 import HowToOrder from "@/components/HowToOrder";
 import Navbar from "@/components/Navbar";
 import OfferPreview from "@/components/OfferPreview";
 import PromoBanner from "@/components/PromoBanner";
+import { getHomeMenuCategories } from "@/lib/menu";
 
-export default function Home() {
+export default async function Home() {
+  const homeCategories = await getHomeMenuCategories();
+
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden">
       <Navbar />
@@ -19,6 +23,7 @@ export default function Home() {
         <HomeBanner />
         <NowOpen />
         <PromoBanner />
+        <HomeMenuShowcase categories={homeCategories} />
         <HighlightStrip />
         <FeatureCards />
         <CraftSpotlight />

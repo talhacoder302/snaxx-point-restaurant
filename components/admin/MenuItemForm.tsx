@@ -87,7 +87,7 @@ export default function MenuItemForm({ action, categories, item, submitLabel }: 
             // eslint-disable-next-line @next/next/no-img-element -- admin-only preview, arbitrary uploaded/local paths
             <img
               src={preview}
-              alt="Item preview"
+              alt="Product preview"
               className="h-16 w-16 shrink-0 rounded-[10px] border border-white/10 object-cover"
             />
           ) : (
@@ -127,6 +127,16 @@ export default function MenuItemForm({ action, categories, item, submitLabel }: 
           className="h-4 w-4 rounded border-white/20 bg-white/[0.04] accent-ember"
         />
         Available
+      </label>
+
+      <label className="flex items-center gap-2.5 text-[13px] font-semibold text-white/80">
+        <input
+          type="checkbox"
+          name="featured"
+          defaultChecked={item?.featured ?? false}
+          className="h-4 w-4 rounded border-white/20 bg-white/[0.04] accent-ember"
+        />
+        Featured (show in this category&rsquo;s home page slider)
       </label>
 
       <Field label="Sort Order (lower shows first)">
