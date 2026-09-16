@@ -95,7 +95,7 @@ export default function HomeBanner() {
             <span className="text-5xl" role="img" aria-hidden="true">
               🖼️
             </span>
-            <p className="max-w-xs px-6 text-center text-[11px] font-semibold uppercase tracking-[1.5px] text-white/40">
+            <p className="max-w-xs px-6 text-center text-[12px] font-semibold uppercase tracking-[1.5px] text-white/40">
               Banner placeholder — add public/banners/{slide.id}.jpg
             </p>
           </div>
@@ -141,7 +141,7 @@ export default function HomeBanner() {
           key={`content-${slide.id}`}
           className="absolute inset-0 flex flex-col items-center justify-end gap-4 px-6 pb-16 text-center animate-banner-fade sm:pb-24"
         >
-          <span className="rounded-full bg-ember px-4 py-1.5 text-base font-bold uppercase tracking-[1.8px] text-white shadow-[0_10px_25px_rgba(228,0,43,0.3)]">
+          <span className="rounded-full bg-ember px-3.5 py-1.5 text-[14px] font-bold uppercase tracking-[1.5px] text-white shadow-[0_10px_25px_rgba(228,0,43,0.3)]">
             {slide.eyebrow}
           </span>
 

@@ -35,8 +35,8 @@ export default function OffersHero({
           <div
             className={
               isLightBadge
-                ? "inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white px-4 py-2 text-base font-bold uppercase tracking-[1.8px] text-ember-light"
-                : "inline-flex items-center gap-2.5 rounded-full border border-ember/25 bg-ember/10 px-4 py-2 text-base font-bold uppercase tracking-[1.8px] text-ember-glow"
+                ? "inline-flex items-center gap-2 rounded-full border border-white/20 bg-white px-3.5 py-1.5 text-[14px] font-bold uppercase tracking-[1.5px] text-ember-light"
+                : "inline-flex items-center gap-2 rounded-full border border-ember/25 bg-ember/10 px-3.5 py-1.5 text-[14px] font-bold uppercase tracking-[1.5px] text-ember-glow"
             }
           >
             <span className="h-1.5 w-1.5 rounded-full bg-ember shadow-[0_0_12px_#e4002b] animate-pulse-dot" />

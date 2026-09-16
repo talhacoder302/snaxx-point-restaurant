@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { logout } from "@/app/admin/actions";
+import AdminNav from "@/components/admin/AdminNav";
 
 export default function AdminDashboardLayout({
   children,
@@ -9,29 +11,21 @@ export default function AdminDashboardLayout({
   return (
     <div className="min-h-screen bg-ink">
       <header className="border-b border-white/[0.08] bg-white/[0.03]">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
-          <div className="flex items-center gap-6">
-            <Link href="/admin" className="font-display text-lg font-black text-white">
-              Snaxx Point <span className="text-ember">Admin</span>
-            </Link>
+        <div className="mx-auto grid max-w-5xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-4">
+          <Link href="/admin" className="flex items-center gap-2.5 justify-self-start">
+            <Image
+              src="/snaxxpoint-logo.png"
+              alt="Snaxx Point Restaurant"
+              width={40}
+              height={40}
+              className="h-10 w-10 object-contain"
+            />
+            <span className="font-display text-lg font-black text-ember">Admin</span>
+          </Link>
 
-            <nav className="flex items-center gap-4">
-              <Link
-                href="/admin"
-                className="text-[13px] font-semibold text-white/70 transition-colors hover:text-white"
-              >
-                Offers
-              </Link>
-              <Link
-                href="/admin/menu"
-                className="text-[13px] font-semibold text-white/70 transition-colors hover:text-white"
-              >
-                Products
-              </Link>
-            </nav>
-          </div>
+          <AdminNav />
 
-          <form action={logout}>
+          <form action={logout} className="justify-self-end">
             <button
               type="submit"
               className="rounded-[10px] border border-white/10 bg-white/[0.04] px-4 py-2 text-[13px] font-semibold text-white/80 transition-colors hover:border-ember/40 hover:text-white"

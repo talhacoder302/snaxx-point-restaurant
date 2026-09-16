@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ContactCTA from "@/components/ContactCTA";
 import Footer from "@/components/Footer";
-import MenuSection from "@/components/MenuSection";
+import MenuAccordion from "@/components/MenuAccordion";
 import Navbar from "@/components/Navbar";
 import OffersHero from "@/components/OffersHero";
 import Reveal from "@/components/Reveal";
@@ -51,29 +51,9 @@ export default async function MenuPage() {
                 </div>
               </Reveal>
             ) : (
-              <>
-                {categoriesWithItems.length > 1 && (
-                  <Reveal>
-                    <div className="flex flex-wrap justify-center gap-2.5">
-                      {categoriesWithItems.map((category) => (
-                        <a
-                          key={category.id}
-                          href={`#${category.id}`}
-                          className="rounded-full border border-ink/10 bg-white px-4 py-2 text-[13px] font-semibold text-ink/75 transition-colors hover:border-ember/40 hover:text-ember"
-                        >
-                          {category.name}
-                        </a>
-                      ))}
-                    </div>
-                  </Reveal>
-                )}
-
-                <div className="mt-12 space-y-14">
-                  {categoriesWithItems.map((category, index) => (
-                    <MenuSection key={category.id} category={category} delay={index * 80} />
-                  ))}
-                </div>
-              </>
+              <Reveal>
+                <MenuAccordion categories={categoriesWithItems} />
+              </Reveal>
             )}
           </div>
         </section>
