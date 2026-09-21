@@ -142,7 +142,11 @@ export default function MenuAccordion({ categories }: MenuAccordionProps) {
                         </span>
 
                         {item.available && (
-                          <AddToCartButton itemKey={`menu:${item.id}`} name={item.name} />
+                          <AddToCartButton
+                            itemKey={`menu:${item.id}`}
+                            name={item.name}
+                            price={item.price}
+                          />
                         )}
                       </li>
                     ))}

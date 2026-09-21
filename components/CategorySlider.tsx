@@ -72,7 +72,11 @@ export default function CategorySlider({ category, delay = 0 }: CategorySliderPr
                   <div className="mt-auto flex items-center justify-between gap-2 pt-3">
                     <span className="text-[14px] font-black text-gradient">{item.price}</span>
 
-                    <AddToCartButton itemKey={`menu:${item.id}`} name={item.name} />
+                    <AddToCartButton
+                      itemKey={`menu:${item.id}`}
+                      name={item.name}
+                      price={item.price}
+                    />
                   </div>
                 </div>
               </article>

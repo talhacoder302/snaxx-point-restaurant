@@ -4,6 +4,8 @@ export type CartItem = {
   /** Unique across menu items and offers, e.g. "menu:<id>" or "offer:<id>". */
   key: string;
   name: string;
+  /** Price text as shown on the site. Used only for the cart's own totals — never sent to WhatsApp. */
+  price: string;
   quantity: number;
 };
 
@@ -15,7 +17,9 @@ let items: CartItem[] = EMPTY_CART;
 let loaded = false;
 const listeners = new Set<() => void>();
 
-function isCartItem(value: unknown): value is CartItem {
+type StoredCartItem = Omit<CartItem, "price"> & { price?: unknown };
+
+function isStoredCartItem(value: unknown): value is StoredCartItem {
   if (typeof value !== "object" || value === null) return false;
   const item = value as Record<string, unknown>;
   return (
@@ -33,7 +37,11 @@ function readFromStorage(): CartItem[] {
     if (!raw) return EMPTY_CART;
     const parsed: unknown = JSON.parse(raw);
     if (!Array.isArray(parsed)) return EMPTY_CART;
-    const valid = parsed.filter(isCartItem);
+    // Carts saved before prices were tracked have no price — keep them, with a blank price.
+    const valid = parsed.filter(isStoredCartItem).map((item) => ({
+      ...item,
+      price: typeof item.price === "string" ? item.price : "",
+    }));
     return valid.length > 0 ? valid : EMPTY_CART;
   } catch {
     return EMPTY_CART;
@@ -87,7 +95,7 @@ function getServerSnapshot(): CartItem[] {
   return EMPTY_CART;
 }
 
-export function addToCart(item: { key: string; name: string }) {
+export function addToCart(item: { key: string; name: string; price: string }) {
   const current = getSnapshot();
   const existing = current.find((entry) => entry.key === item.key);
 
@@ -95,14 +103,14 @@ export function addToCart(item: { key: string; name: string }) {
     commit(
       current.map((entry) =>
         entry.key === item.key
-          ? { ...entry, quantity: Math.min(entry.quantity + 1, MAX_QUANTITY) }
+          ? { ...entry, price: item.price, quantity: Math.min(entry.quantity + 1, MAX_QUANTITY) }
           : entry
       )
     );
     return;
   }
 
-  commit([...current, { key: item.key, name: item.name, quantity: 1 }]);
+  commit([...current, { key: item.key, name: item.name, price: item.price, quantity: 1 }]);
 }
 
 /** Sets an item's quantity; a quantity below 1 removes it. */

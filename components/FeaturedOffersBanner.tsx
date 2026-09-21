@@ -97,6 +97,7 @@ export default function FeaturedOffersBanner({ offers }: { offers: Offer[] }) {
             <AddToCartButton
               itemKey={`offer:${offer.id}`}
               name={offer.title}
+              price={offer.discountedPrice}
               variant="pill"
               className="min-h-[44px] rounded-[12px] border border-ember/30 bg-white px-5 text-[13px] font-bold text-ember hover:bg-ember/[0.06]"
             />

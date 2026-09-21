@@ -99,6 +99,7 @@ export default function OfferCard({ offer, delay = 0 }: OfferCardProps) {
           <AddToCartButton
             itemKey={`offer:${offer.id}`}
             name={offer.title}
+            price={offer.discountedPrice}
             variant="pill"
             className="mt-2.5 min-h-[42px] rounded-[12px] border border-ember/30 text-[13px] font-bold text-ember hover:bg-ember/[0.06]"
           />

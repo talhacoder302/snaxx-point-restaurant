@@ -10,6 +10,8 @@ type AddToCartButtonProps = {
   /** Unique across menu items and offers, e.g. "menu:<id>" or "offer:<id>". */
   itemKey: string;
   name: string;
+  /** Price text as shown on the site; kept in the cart for totals only. */
+  price: string;
   /** "icon" is a round icon-only button; "pill" is a labelled button. */
   variant?: "icon" | "pill";
   className?: string;
@@ -20,6 +22,7 @@ const ADDED_FEEDBACK_MS = 1400;
 export default function AddToCartButton({
   itemKey,
   name,
+  price,
   variant = "icon",
   className = "",
 }: AddToCartButtonProps) {
@@ -34,7 +37,7 @@ export default function AddToCartButton({
   );
 
   const handleClick = () => {
-    addToCart({ key: itemKey, name });
+    addToCart({ key: itemKey, name, price });
     setJustAdded(true);
     if (timeoutRef.current !== null) window.clearTimeout(timeoutRef.current);
     timeoutRef.current = window.setTimeout(() => setJustAdded(false), ADDED_FEEDBACK_MS);
