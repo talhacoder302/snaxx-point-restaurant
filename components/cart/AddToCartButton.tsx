@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { addToCart } from "@/lib/cart";
+import AddShoppingCartIcon from "../icons/AddShoppingCartIcon";
 import CartIcon from "../icons/CartIcon";
 import CheckIcon from "../icons/CheckIcon";
-import PlusIcon from "../icons/PlusIcon";
 
 type AddToCartButtonProps = {
   /** Unique across menu items and offers, e.g. "menu:<id>" or "offer:<id>". */
@@ -61,11 +61,11 @@ export default function AddToCartButton({
       type="button"
       onClick={handleClick}
       aria-label={label}
-      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full text-white shadow-[0_6px_16px_rgba(228,0,43,0.25)] transition-all duration-300 hover:scale-110 active:scale-95 ${
+      className={`grid h-9 w-9 shrink-0 place-items-center rounded-full text-white shadow-[0_6px_16px_rgba(228,0,43,0.25)] transition-all duration-300 hover:scale-110 active:scale-95 ${
         justAdded ? "bg-[#1DA851]" : "bg-ember hover:bg-ember-dark"
       } ${className}`}
     >
-      {justAdded ? <CheckIcon className="h-[18px] w-[18px]" /> : <PlusIcon className="h-[18px] w-[18px]" />}
+      {justAdded ? <CheckIcon className="h-5 w-5" /> : <AddShoppingCartIcon className="h-5 w-5" />}
     </button>
   );
 }
