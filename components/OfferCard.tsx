@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Offer } from "@/lib/offers";
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
+import AddToCartButton from "./cart/AddToCartButton";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 import Reveal from "./Reveal";
 
@@ -93,6 +94,14 @@ export default function OfferCard({ offer, delay = 0 }: OfferCardProps) {
             )}
             {offer.ctaLabel}
           </a>
+
+          {/* Combine this deal with other items in one WhatsApp order */}
+          <AddToCartButton
+            itemKey={`offer:${offer.id}`}
+            name={offer.title}
+            variant="pill"
+            className="mt-2.5 min-h-[42px] rounded-[12px] border border-ember/30 text-[13px] font-bold text-ember hover:bg-ember/[0.06]"
+          />
         </div>
       </article>
     </Reveal>

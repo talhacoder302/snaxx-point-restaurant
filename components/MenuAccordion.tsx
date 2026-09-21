@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import type { MenuCategory } from "@/lib/menu";
+import AddToCartButton from "./cart/AddToCartButton";
 import ChevronDownIcon from "./icons/ChevronDownIcon";
 
 type MenuAccordionProps = {
@@ -139,6 +140,10 @@ export default function MenuAccordion({ categories }: MenuAccordionProps) {
                         <span className="shrink-0 text-[15px] font-black text-gradient">
                           {item.price}
                         </span>
+
+                        {item.available && (
+                          <AddToCartButton itemKey={`menu:${item.id}`} name={item.name} />
+                        )}
                       </li>
                     ))}
                   </ul>

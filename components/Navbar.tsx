@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navLinks, site } from "@/lib/site";
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
+import CartButton from "./cart/CartButton";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -98,6 +99,8 @@ export default function Navbar() {
 
         {/* Order Now */}
         <div className="flex items-center gap-3">
+          <CartButton />
+
           <a
             href={buildWhatsAppOrderLink("a meal")}
             target="_blank"

@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import type { MenuCategory } from "@/lib/menu";
-import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
-import WhatsAppIcon from "./icons/WhatsAppIcon";
+import AddToCartButton from "./cart/AddToCartButton";
 import Reveal from "./Reveal";
 
 type CategorySliderProps = {
@@ -73,15 +72,7 @@ export default function CategorySlider({ category, delay = 0 }: CategorySliderPr
                   <div className="mt-auto flex items-center justify-between gap-2 pt-3">
                     <span className="text-[14px] font-black text-gradient">{item.price}</span>
 
-                    <a
-                      href={buildWhatsAppOrderLink(item.name)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Order ${item.name} on WhatsApp`}
-                      className="shrink-0"
-                    >
-                      <WhatsAppIcon circle className="h-4 w-4" circleClassName="h-8 w-8" />
-                    </a>
+                    <AddToCartButton itemKey={`menu:${item.id}`} name={item.name} />
                   </div>
                 </div>
               </article>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Offer } from "@/lib/offers";
 import { buildWhatsAppOrderLink } from "@/lib/whatsapp";
+import AddToCartButton from "./cart/AddToCartButton";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 
 const AUTO_ADVANCE_MS = 5000;
@@ -92,6 +93,13 @@ export default function FeaturedOffersBanner({ offers }: { offers: Offer[] }) {
               <WhatsAppIcon circle className="h-3.5 w-3.5" circleClassName="h-6 w-6" />
               {offer.ctaLabel}
             </a>
+
+            <AddToCartButton
+              itemKey={`offer:${offer.id}`}
+              name={offer.title}
+              variant="pill"
+              className="min-h-[44px] rounded-[12px] border border-ember/30 bg-white px-5 text-[13px] font-bold text-ember hover:bg-ember/[0.06]"
+            />
           </div>
         </div>
       </div>
