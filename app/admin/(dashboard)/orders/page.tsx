@@ -166,13 +166,13 @@ export default async function AdminOrdersPage({ searchParams }: PageProps<"/admi
   const groups = groupByDay(visibleOrders, now);
 
   const tabs: { filter: StatusFilter; label: string; dot: string | null }[] = [
+    { filter: "all", label: "All", dot: null },
     { filter: "active", label: "Active", dot: null },
     ...ORDER_STATUSES.map((value) => ({
       filter: value,
       label: ORDER_STATUS_LABELS[value],
       dot: ORDER_STATUS_BADGE[value].dot,
     })),
-    { filter: "all", label: "All", dot: null },
   ];
 
   return (
@@ -295,7 +295,7 @@ export default async function AdminOrdersPage({ searchParams }: PageProps<"/admi
           ) : (
             <nav
               aria-label="Filter orders by status"
-              className="-mx-5 mt-4 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none]"
+              className="mt-4 flex flex-wrap gap-2"
             >
               {tabs.map((tab) => {
                 const isActive = tab.filter === status;
