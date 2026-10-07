@@ -45,16 +45,22 @@ type OrderRowPayload = {
   created_at: string;
 };
 
-/** Fallback re-count in case a realtime event is missed (e.g. the connection dropped). */
-const RECOUNT_INTERVAL_MS = 60_000;
+/**
+ * Backup check for new orders, so alerts still arrive within seconds if
+ * Realtime isn't delivering — e.g. supabase/enable-orders-realtime.sql hasn't
+ * been run (the channel still reports "subscribed" then), or the connection
+ * dropped. It's a tiny query, so it runs at the same pace whatever the state.
+ */
+const POLL_INTERVAL_MS = 10_000;
+const ALERT_COLUMNS = "id, customer_name, order_type, total_items, subtotal, status, created_at";
 const MAX_TOASTS = 20;
 const TITLE_PREFIX = /^\(\d+\)\s/;
 
 /**
- * Listens for new and updated orders through Supabase Realtime on every admin
- * page, and alerts staff without a page refresh: a count badge (read by
- * AdminNav), a toast per new order, a chime, the browser tab title, and —
- * when enabled — a desktop notification.
+ * Listens for new and updated orders on every admin page — instantly through
+ * Supabase Realtime, with a 10-second backup check — and alerts staff without
+ * a page refresh: the bell's count badge, a toast per new order, a chime, the
+ * browser tab title, and (when enabled) a desktop notification.
  */
 export default function OrderAlertsProvider({
   initialNewCount,
@@ -70,6 +76,10 @@ export default function OrderAlertsProvider({
   const [toasts, setToasts] = useState<OrderToast[]>([]);
   const supabaseRef = useRef<ReturnType<typeof createClient> | null>(null);
   const refreshTimerRef = useRef<number | null>(null);
+  /** Orders already announced — Realtime and the backup check can both report the same one. */
+  const announcedRef = useRef(new Set<string>());
+  /** Newest order time seen so far; the backup check only asks for orders after it. */
+  const lastSeenAtRef = useRef<string | null>(null);
 
   // A server re-render (navigation, router.refresh) brings a fresh count — adopt it.
   const [lastInitialCount, setLastInitialCount] = useState(initialNewCount);
@@ -87,16 +97,22 @@ export default function OrderAlertsProvider({
     if (!error && count !== null) setNewCount(count);
   }, []);
 
-  const onOrderChange = useEffectEvent((eventType: string, row: OrderRowPayload | null) => {
-    void recount();
-
-    // Keep the Orders page itself in sync — batched, in case several events arrive together.
+  const syncOrdersPage = useEffectEvent(() => {
+    // Keep the Orders page itself in sync — batched, in case several changes arrive together.
     if (pathname.startsWith("/admin/orders")) {
       if (refreshTimerRef.current !== null) window.clearTimeout(refreshTimerRef.current);
       refreshTimerRef.current = window.setTimeout(() => router.refresh(), 400);
     }
+  });
 
-    if (eventType !== "INSERT" || !row || row.status !== "pending") return;
+  /** Toast + chime + desktop notification for a new order — once per order. */
+  const announce = useEffectEvent((row: OrderRowPayload) => {
+    // Compare as dates — timestamps arrive as "…Z" or "…+00:00" with varying precision.
+    if (lastSeenAtRef.current === null || Date.parse(row.created_at) > Date.parse(lastSeenAtRef.current)) {
+      lastSeenAtRef.current = row.created_at;
+    }
+    if (row.status !== "pending" || announcedRef.current.has(row.id)) return;
+    announcedRef.current.add(row.id);
 
     const toast: OrderToast = {
       id: row.id,
@@ -131,6 +147,12 @@ export default function OrderAlertsProvider({
     }
   });
 
+  const onOrderChange = useEffectEvent((eventType: string, row: OrderRowPayload | null) => {
+    void recount();
+    syncOrdersPage();
+    if (eventType === "INSERT" && row) announce(row);
+  });
+
   // Realtime subscription — one channel for the lifetime of the admin session.
   useEffect(() => {
     const supabase = (supabaseRef.current ??= createClient());
@@ -159,16 +181,45 @@ export default function OrderAlertsProvider({
           }
         });
     })().catch((error: unknown) => {
-      // Live alerts are a bonus — the 60s re-count and the Orders page's own refresh still work.
+      // The 10-second backup check below still delivers alerts.
       console.error("Live order alerts unavailable:", error);
       setConnection("offline");
     });
 
-    const interval = window.setInterval(() => void recount(), RECOUNT_INTERVAL_MS);
+    // Backup check: remember the newest existing order, then look for anything newer.
+    let pollTimer: number | null = null;
+    const poll = async () => {
+      try {
+        if (lastSeenAtRef.current === null) {
+          const { data } = await supabase
+            .from("orders")
+            .select("created_at")
+            .order("created_at", { ascending: false })
+            .limit(1);
+          const newest = (data as { created_at: string }[] | null)?.[0]?.created_at;
+          // Existing orders are never announced; with none yet, start from now.
+          lastSeenAtRef.current ??= newest ?? new Date().toISOString();
+        } else {
+          const { data, error } = await supabase
+            .from("orders")
+            .select(ALERT_COLUMNS)
+            .gt("created_at", lastSeenAtRef.current)
+            .order("created_at", { ascending: true })
+            .limit(20);
+          const rows = error ? [] : ((data ?? []) as OrderRowPayload[]);
+          rows.forEach((row) => announce(row));
+          if (rows.length > 0) syncOrdersPage();
+          await recount();
+        }
+      } finally {
+        if (!cancelled) pollTimer = window.setTimeout(() => void poll(), POLL_INTERVAL_MS);
+      }
+    };
+    void poll();
 
     return () => {
       cancelled = true;
-      window.clearInterval(interval);
+      if (pollTimer !== null) window.clearTimeout(pollTimer);
       if (refreshTimerRef.current !== null) window.clearTimeout(refreshTimerRef.current);
       if (channel) void supabase.removeChannel(channel);
     };
