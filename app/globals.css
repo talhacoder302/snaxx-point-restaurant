@@ -149,6 +149,41 @@
   }
 }
 
+/* ── Admin light / dark theme ─────────────────────────
+   The admin area sets data-admin-theme="light" | "dark" on its wrapper
+   (see app/admin/layout.tsx). Admin components use these tokens — e.g.
+   text-admin-fg, border-admin-fg/10, bg-admin-surface — and `dark:` for the
+   few colours that need a different shade per mode. The public site has no
+   data-admin-theme, so it is unaffected. */
+@custom-variant dark (&:where([data-admin-theme="dark"], [data-admin-theme="dark"] *));
+
+@theme inline {
+  /* Page background */
+  --color-admin-bg: var(--admin-bg);
+  /* Main text colour; also used with opacity for muted text, borders, and tints */
+  --color-admin-fg: var(--admin-fg);
+  /* Cards, panels, table headers */
+  --color-admin-surface: var(--admin-surface);
+  /* Inputs and secondary buttons */
+  --color-admin-field: var(--admin-field);
+}
+
+[data-admin-theme] {
+  --admin-bg: #f4f4f5;
+  --admin-fg: #181818;
+  --admin-surface: #ffffff;
+  --admin-field: #ffffff;
+  color-scheme: light;
+}
+
+[data-admin-theme="dark"] {
+  --admin-bg: #181818;
+  --admin-fg: #ffffff;
+  --admin-surface: rgba(255, 255, 255, 0.03);
+  --admin-field: rgba(255, 255, 255, 0.04);
+  color-scheme: dark;
+}
+
 /* ── Base ─────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;

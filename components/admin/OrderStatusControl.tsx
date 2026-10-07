@@ -74,19 +74,19 @@ export default function OrderStatusControl({ orderId, status, orderType }: Order
             value={optimisticStatus}
             onChange={(event) => changeStatus(event.target.value as OrderStatus)}
             disabled={pending}
-            className="w-full appearance-none rounded-[10px] border border-white/10 bg-white/[0.04] py-2.5 pl-3.5 pr-9 text-[13px] font-semibold text-white/85 outline-none transition-colors hover:border-white/20 focus:border-ember/50 disabled:opacity-60"
+            className="w-full appearance-none rounded-[10px] border border-admin-fg/10 bg-admin-field py-2.5 pl-3.5 pr-9 text-[13px] font-semibold text-admin-fg/85 outline-none transition-colors hover:border-admin-fg/20 focus:border-ember/50 disabled:opacity-60"
           >
             {ORDER_STATUSES.map((value) => (
-              <option key={value} value={value} className="bg-ink text-white">
+              <option key={value} value={value} className="bg-admin-bg text-admin-fg">
                 {orderStatusLabel(value, orderType)}
               </option>
             ))}
           </select>
-          <ChevronDownIcon className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50" />
+          <ChevronDownIcon className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-admin-fg/60" />
         </label>
       </div>
 
-      {error && <p className="mt-2 text-[12.5px] text-[#ff8a9d]">{error}</p>}
+      {error && <p className="mt-2 text-[12.5px] text-ember-dark dark:text-[#ff8a9d]">{error}</p>}
     </div>
   );
 }

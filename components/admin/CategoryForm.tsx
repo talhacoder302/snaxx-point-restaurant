@@ -12,14 +12,14 @@ type CategoryFormProps = {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="block text-[13px] font-semibold text-white/80">{label}</label>
+      <label className="block text-[13px] font-semibold text-admin-fg/80">{label}</label>
       <div className="mt-1.5">{children}</div>
     </div>
   );
 }
 
 const inputClasses =
-  "w-full rounded-[10px] border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-white outline-none focus:border-ember/50";
+  "w-full rounded-[10px] border border-admin-fg/10 bg-admin-field px-3.5 py-2.5 text-sm text-admin-fg outline-none focus:border-ember/50";
 
 export default function CategoryForm({ action, category, submitLabel }: CategoryFormProps) {
   const [state, formAction, pending] = useActionState(action, undefined);
@@ -58,10 +58,10 @@ export default function CategoryForm({ action, category, submitLabel }: Category
             <img
               src={preview}
               alt="Banner preview"
-              className="h-16 w-28 shrink-0 rounded-[10px] border border-white/10 object-cover"
+              className="h-16 w-28 shrink-0 rounded-[10px] border border-admin-fg/10 object-cover"
             />
           ) : (
-            <div className="grid h-16 w-28 shrink-0 place-items-center rounded-[10px] border border-dashed border-white/15 text-2xl">
+            <div className="grid h-16 w-28 shrink-0 place-items-center rounded-[10px] border border-dashed border-admin-fg/15 text-2xl">
               🖼️
             </div>
           )}
@@ -71,12 +71,12 @@ export default function CategoryForm({ action, category, submitLabel }: Category
             name="bannerImageFile"
             accept="image/png,image/jpeg,image/webp,image/gif"
             onChange={handleFileChange}
-            className="block w-full text-[13px] text-white/70 file:mr-3 file:rounded-[8px] file:border-0 file:bg-ember file:px-3.5 file:py-2 file:text-[13px] file:font-semibold file:text-white hover:file:bg-ember-dark"
+            className="block w-full text-[13px] text-admin-fg/70 file:mr-3 file:rounded-[8px] file:border-0 file:bg-ember file:px-3.5 file:py-2 file:text-[13px] file:font-semibold file:text-white hover:file:bg-ember-dark"
           />
         </div>
 
-        <details className="mt-3 text-[12px] text-white/50">
-          <summary className="cursor-pointer select-none text-white/60 hover:text-white/80">
+        <details className="mt-3 text-[12px] text-admin-fg/60">
+          <summary className="cursor-pointer select-none text-admin-fg/60 hover:text-admin-fg/80">
             Or paste an image URL directly
           </summary>
           <input
@@ -89,17 +89,17 @@ export default function CategoryForm({ action, category, submitLabel }: Category
         </details>
       </Field>
 
-      <label className="flex items-center gap-2.5 text-[13px] font-semibold text-white/80">
+      <label className="flex items-center gap-2.5 text-[13px] font-semibold text-admin-fg/80">
         <input
           type="checkbox"
           name="showOnHome"
           defaultChecked={category?.showOnHome ?? true}
-          className="h-4 w-4 rounded border-white/20 bg-white/[0.04] accent-ember"
+          className="h-4 w-4 rounded border-admin-fg/20 bg-admin-field accent-ember"
         />
         Show on Home Page (as its own slider section)
       </label>
 
-      {state?.error && <p className="text-[13px] text-flame">{state.error}</p>}
+      {state?.error && <p className="text-[13px] text-flame dark:text-[#ff8a9d]">{state.error}</p>}
 
       <button
         type="submit"

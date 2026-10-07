@@ -20,7 +20,7 @@ export default function AdminNav() {
           href={link.href}
           aria-current={link.isActive ? "page" : undefined}
           className={`relative py-1 text-[13px] font-semibold transition-colors ${
-            link.isActive ? "text-ember" : "text-white/70 hover:text-white"
+            link.isActive ? "text-ember" : "text-admin-fg/70 hover:text-admin-fg"
           }`}
         >
           {link.label}

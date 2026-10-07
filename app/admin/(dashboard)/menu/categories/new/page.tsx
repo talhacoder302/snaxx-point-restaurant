@@ -4,7 +4,7 @@ import { createCategory } from "../../actions";
 export default function NewCategoryPage() {
   return (
     <div>
-      <h1 className="font-display text-2xl font-black text-white">Add Category</h1>
+      <h1 className="font-display text-2xl font-black text-admin-fg">Add Category</h1>
       <CategoryForm action={createCategory} submitLabel="Create Category" />
     </div>
   );

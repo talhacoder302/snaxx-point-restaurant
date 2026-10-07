@@ -21,7 +21,7 @@ export default function DeleteOfferButton({
       <input type="hidden" name="offerId" value={offerId} />
       <button
         type="submit"
-        className="rounded-[8px] border border-flame/30 bg-flame/[0.08] px-3 py-1.5 text-[12.5px] font-semibold text-flame transition-colors hover:bg-flame/[0.15]"
+        className="rounded-[8px] border border-flame/30 bg-flame/[0.08] px-3 py-1.5 text-[12.5px] font-semibold text-flame transition-colors hover:bg-flame/[0.15] dark:border-ember/30 dark:bg-ember/[0.08] dark:text-[#ff8a9d] dark:hover:bg-ember/[0.15]"
       >
         Delete
       </button>

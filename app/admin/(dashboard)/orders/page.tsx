@@ -27,14 +27,14 @@ function StatTile({
   return (
     <div
       className={`rounded-[16px] border p-4 sm:p-5 ${
-        accent ? "border-ember/35 bg-ember/[0.08]" : "border-white/[0.08] bg-white/[0.03]"
+        accent ? "border-ember/35 bg-ember/[0.08]" : "border-admin-fg/[0.08] bg-admin-surface shadow-[0_1px_3px_rgba(0,0,0,0.05)] dark:shadow-none"
       }`}
     >
-      <p className="text-[11.5px] font-bold uppercase tracking-[1.2px] text-white/50">{label}</p>
-      <p className="mt-2 font-display text-[28px] font-black leading-none tabular-nums text-white">
+      <p className="text-[11.5px] font-bold uppercase tracking-[1.2px] text-admin-fg/60">{label}</p>
+      <p className="mt-2 font-display text-[28px] font-black leading-none tabular-nums text-admin-fg">
         {value}
       </p>
-      <p className="mt-2 text-[12px] text-white/45">{detail}</p>
+      <p className="mt-2 text-[12px] text-admin-fg/60">{detail}</p>
     </div>
   );
 }
@@ -96,8 +96,8 @@ export default async function AdminOrdersPage({ searchParams }: PageProps<"/admi
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="font-display text-2xl font-black text-white">Orders</h1>
-          <p className="mt-1 text-[13px] text-white/50">
+          <h1 className="font-display text-2xl font-black text-admin-fg">Orders</h1>
+          <p className="mt-1 text-[13px] text-admin-fg/60">
             Orders placed on the website, newest first.
           </p>
         </div>
@@ -107,13 +107,13 @@ export default async function AdminOrdersPage({ searchParams }: PageProps<"/admi
       </div>
 
       {setupNeeded ? (
-        <div className="mt-8 rounded-[16px] border border-amber-400/25 bg-amber-400/[0.06] p-6">
-          <h2 className="text-[15px] font-bold text-amber-200">One-time setup needed</h2>
-          <p className="mt-2 text-[13.5px] leading-[1.7] text-white/70">
-            The <code className="rounded bg-white/10 px-1.5 py-0.5 text-[12.5px]">orders</code> table
+        <div className="mt-8 rounded-[16px] border border-amber-500/30 bg-amber-50 p-6 dark:border-amber-400/25 dark:bg-amber-400/[0.06]">
+          <h2 className="text-[15px] font-bold text-amber-800 dark:text-amber-200">One-time setup needed</h2>
+          <p className="mt-2 text-[13.5px] leading-[1.7] text-admin-fg/70">
+            The <code className="rounded bg-admin-fg/10 px-1.5 py-0.5 text-[12.5px]">orders</code> table
             doesn&rsquo;t exist in your database yet. Open the Supabase dashboard → SQL Editor, paste
             the contents of{" "}
-            <code className="rounded bg-white/10 px-1.5 py-0.5 text-[12.5px]">
+            <code className="rounded bg-admin-fg/10 px-1.5 py-0.5 text-[12.5px]">
               supabase/create-orders-table.sql
             </code>
             , and run it. Then refresh this page.
@@ -162,15 +162,15 @@ export default async function AdminOrdersPage({ searchParams }: PageProps<"/admi
                 aria-current={tab.isActive ? "page" : undefined}
                 className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-1.5 text-[12.5px] font-semibold transition-colors ${
                   tab.isActive
-                    ? "border-ember/50 bg-ember/[0.14] text-white"
-                    : "border-white/10 bg-white/[0.03] text-white/60 hover:border-white/20 hover:text-white"
+                    ? "border-ember/50 bg-ember/[0.1] text-ember-dark dark:bg-ember/[0.14] dark:text-admin-fg"
+                    : "border-admin-fg/10 bg-admin-surface text-admin-fg/60 hover:border-admin-fg/20 hover:text-admin-fg"
                 }`}
               >
                 {tab.dot && <span className={`h-1.5 w-1.5 rounded-full ${tab.dot}`} />}
                 {tab.label}
                 <span
                   className={`rounded-full px-1.5 text-[11px] tabular-nums ${
-                    tab.isActive ? "bg-white/15 text-white" : "bg-white/[0.06] text-white/50"
+                    tab.isActive ? "bg-admin-fg/15 text-admin-fg" : "bg-admin-fg/[0.06] text-admin-fg/60"
                   }`}
                 >
                   {tab.count}
@@ -181,14 +181,14 @@ export default async function AdminOrdersPage({ searchParams }: PageProps<"/admi
 
           {/* Orders */}
           {visibleOrders.length === 0 ? (
-            <div className="mt-6 flex flex-col items-center rounded-[18px] border border-dashed border-white/[0.1] px-6 py-16 text-center">
+            <div className="mt-6 flex flex-col items-center rounded-[18px] border border-dashed border-admin-fg/[0.1] px-6 py-16 text-center">
               <span className="text-4xl" aria-hidden="true">
                 🧾
               </span>
-              <p className="mt-4 text-[15px] font-bold text-white">
+              <p className="mt-4 text-[15px] font-bold text-admin-fg">
                 {activeStatus ? `No ${ORDER_STATUS_LABELS[activeStatus].toLowerCase()} orders` : "No orders yet"}
               </p>
-              <p className="mt-1.5 max-w-sm text-[13px] leading-[1.6] text-white/50">
+              <p className="mt-1.5 max-w-sm text-[13px] leading-[1.6] text-admin-fg/60">
                 {activeStatus
                   ? "Orders will show up here when they reach this stage."
                   : "When a customer taps “Order Now” in their cart, the order lands here automatically."}
@@ -199,11 +199,11 @@ export default async function AdminOrdersPage({ searchParams }: PageProps<"/admi
               {groups.map((group) => (
                 <section key={group.key} aria-labelledby={`day-${group.key}`}>
                   <div className="mb-3 flex items-center gap-3">
-                    <h2 id={`day-${group.key}`} className="text-[13px] font-bold text-white/80">
+                    <h2 id={`day-${group.key}`} className="text-[13px] font-bold text-admin-fg/80">
                       {group.label}
                     </h2>
-                    <span className="h-px flex-1 bg-white/[0.08]" />
-                    <span className="text-[12px] text-white/40">
+                    <span className="h-px flex-1 bg-admin-fg/[0.08]" />
+                    <span className="text-[12px] text-admin-fg/60">
                       {group.orders.length} {group.orders.length === 1 ? "order" : "orders"}
                     </span>
                   </div>

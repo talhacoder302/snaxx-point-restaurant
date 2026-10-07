@@ -9,11 +9,11 @@ export default async function AdminMenuPage() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h1 className="font-display text-2xl font-black text-white">Products</h1>
+        <h1 className="font-display text-2xl font-black text-admin-fg">Products</h1>
         <div className="flex items-center gap-2.5">
           <Link
             href="/admin/menu/items/new"
-            className="rounded-[10px] border border-white/10 bg-white/[0.04] px-4 py-2.5 text-[13px] font-semibold text-white/85 transition-colors hover:border-ember/40"
+            className="rounded-[10px] border border-admin-fg/10 bg-admin-field px-4 py-2.5 text-[13px] font-semibold text-admin-fg/85 transition-colors hover:border-ember/40"
           >
             + Add Product
           </Link>
@@ -27,7 +27,7 @@ export default async function AdminMenuPage() {
       </div>
 
       {categories.length === 0 ? (
-        <p className="mt-8 text-[14px] text-smoke">
+        <p className="mt-8 text-[14px] text-admin-fg/60">
           No categories yet. Add your first one above.
         </p>
       ) : (

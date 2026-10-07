@@ -17,7 +17,7 @@ export default async function EditCategoryPage({
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-black text-white">Edit Category</h1>
+      <h1 className="font-display text-2xl font-black text-admin-fg">Edit Category</h1>
       <CategoryForm
         action={updateCategory.bind(null, id)}
         category={category}

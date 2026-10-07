@@ -7,18 +7,18 @@ export default function AdminLoginPage() {
   const [state, formAction, pending] = useActionState(login, undefined);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ink px-5">
-      <div className="w-full max-w-sm rounded-[22px] border border-white/[0.08] bg-white/[0.03] p-8 backdrop-blur-md">
-        <h1 className="font-display text-2xl font-black text-white">
+    <div className="flex min-h-screen items-center justify-center bg-admin-bg px-5">
+      <div className="w-full max-w-sm rounded-[22px] border border-admin-fg/[0.08] bg-admin-surface p-8 backdrop-blur-md">
+        <h1 className="font-display text-2xl font-black text-admin-fg">
           Admin Login
         </h1>
-        <p className="mt-2 text-[13px] text-smoke">
+        <p className="mt-2 text-[13px] text-admin-fg/60">
           Sign in to manage Snaxx Point offers.
         </p>
 
         <form action={formAction} className="mt-6 space-y-4">
           <div>
-            <label htmlFor="email" className="block text-[13px] font-semibold text-white/80">
+            <label htmlFor="email" className="block text-[13px] font-semibold text-admin-fg/80">
               Email
             </label>
             <input
@@ -27,12 +27,12 @@ export default function AdminLoginPage() {
               type="email"
               required
               autoComplete="email"
-              className="mt-1.5 w-full rounded-[10px] border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-white outline-none focus:border-ember/50"
+              className="mt-1.5 w-full rounded-[10px] border border-admin-fg/10 bg-admin-field px-3.5 py-2.5 text-sm text-admin-fg outline-none focus:border-ember/50"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-[13px] font-semibold text-white/80">
+            <label htmlFor="password" className="block text-[13px] font-semibold text-admin-fg/80">
               Password
             </label>
             <input
@@ -41,12 +41,12 @@ export default function AdminLoginPage() {
               type="password"
               required
               autoComplete="current-password"
-              className="mt-1.5 w-full rounded-[10px] border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-white outline-none focus:border-ember/50"
+              className="mt-1.5 w-full rounded-[10px] border border-admin-fg/10 bg-admin-field px-3.5 py-2.5 text-sm text-admin-fg outline-none focus:border-ember/50"
             />
           </div>
 
           {state?.error && (
-            <p className="text-[13px] text-flame">{state.error}</p>
+            <p className="text-[13px] text-flame dark:text-[#ff8a9d]">{state.error}</p>
           )}
 
           <button

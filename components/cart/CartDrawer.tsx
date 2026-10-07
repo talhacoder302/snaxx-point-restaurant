@@ -92,8 +92,9 @@ export default function CartDrawer({ view, onViewChange }: CartDrawerProps) {
         role="dialog"
         aria-modal="true"
         aria-label="Your order"
-        className={`absolute inset-y-0 right-0 flex w-full max-w-md flex-col bg-white shadow-[-20px_0_60px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
+        className={`absolute inset-y-0 right-0 flex w-full max-w-md flex-col bg-white transition-[translate,box-shadow] duration-300 ease-out ${
+          // The shadow only while open — otherwise it bleeds in from off-screen along the right edge.
+          isOpen ? "translate-x-0 shadow-[-20px_0_60px_rgba(0,0,0,0.15)]" : "translate-x-full"
         }`}
       >
         <header className="flex items-center justify-between gap-4 border-b border-ink/[0.07] px-5 py-4 sm:px-6">

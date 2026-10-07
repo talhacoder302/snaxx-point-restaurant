@@ -50,7 +50,7 @@ export default function LiveRefresh({ updatedAtLabel, newOrderCount }: LiveRefre
       type="button"
       onClick={() => startTransition(() => router.refresh())}
       title="Refresh now"
-      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[12px] font-semibold text-white/60 transition-colors hover:border-white/20 hover:text-white"
+      className="inline-flex items-center gap-2 rounded-full border border-admin-fg/10 bg-admin-field px-3 py-1.5 text-[12px] font-semibold text-admin-fg/60 transition-colors hover:border-admin-fg/20 hover:text-admin-fg"
     >
       <span className="relative flex h-2 w-2">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/60" />

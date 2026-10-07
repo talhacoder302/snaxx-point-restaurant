@@ -41,9 +41,9 @@ export default function MenuCategoryAccordion({
         return (
           <div
             key={category.id}
-            className="overflow-hidden rounded-[16px] border border-white/[0.08]"
+            className="overflow-hidden rounded-[16px] border border-admin-fg/[0.08]"
           >
-            <div className="flex items-center justify-between gap-3 bg-white/[0.03] px-4 py-3">
+            <div className="flex items-center justify-between gap-3 bg-admin-surface px-4 py-3">
               <button
                 type="button"
                 onClick={() => toggle(category.id)}
@@ -52,14 +52,14 @@ export default function MenuCategoryAccordion({
               >
                 <span
                   aria-hidden="true"
-                  className={`grid h-6 w-6 shrink-0 place-items-center rounded-full border border-white/10 text-white/50 transition-transform duration-300 ${
+                  className={`grid h-6 w-6 shrink-0 place-items-center rounded-full border border-admin-fg/10 text-admin-fg/60 transition-transform duration-300 ${
                     isOpen ? "rotate-180 border-ember/30 text-ember" : ""
                   }`}
                 >
                   <ChevronDownIcon className="h-3.5 w-3.5" />
                 </span>
-                <h2 className="truncate text-[15px] font-bold text-white">{category.name}</h2>
-                <span className="shrink-0 text-[12.5px] font-semibold text-smoke">
+                <h2 className="truncate text-[15px] font-bold text-admin-fg">{category.name}</h2>
+                <span className="shrink-0 text-[12.5px] font-semibold text-admin-fg/60">
                   {category.items.length} {category.items.length === 1 ? "product" : "products"}
                 </span>
               </button>
@@ -67,7 +67,7 @@ export default function MenuCategoryAccordion({
               <div className="flex shrink-0 items-center gap-2">
                 <Link
                   href={`/admin/menu/categories/${category.id}/edit`}
-                  className="rounded-[8px] border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[12.5px] font-semibold text-white/85 transition-colors hover:border-ember/40"
+                  className="rounded-[8px] border border-admin-fg/10 bg-admin-field px-3 py-1.5 text-[12.5px] font-semibold text-admin-fg/85 transition-colors hover:border-ember/40"
                 >
                   Edit
                 </Link>
@@ -87,12 +87,12 @@ export default function MenuCategoryAccordion({
             >
               <div className="overflow-hidden">
                 {category.items.length === 0 ? (
-                  <p className="px-4 py-4 text-[13.5px] text-smoke">
+                  <p className="px-4 py-4 text-[13.5px] text-admin-fg/60">
                     No products in this category yet.
                   </p>
                 ) : (
                   <table className="w-full text-left text-[13.5px]">
-                    <thead className="text-[12px] uppercase tracking-wide text-smoke">
+                    <thead className="text-[12px] uppercase tracking-wide text-admin-fg/60">
                       <tr>
                         <th className="px-4 py-2.5">Product</th>
                         <th className="px-4 py-2.5">Price</th>
@@ -103,16 +103,16 @@ export default function MenuCategoryAccordion({
                     </thead>
                     <tbody>
                       {category.items.map((item) => (
-                        <tr key={item.id} className="border-t border-white/[0.06]">
-                          <td className="px-4 py-3 text-white">{item.name}</td>
+                        <tr key={item.id} className="border-t border-admin-fg/[0.06]">
+                          <td className="px-4 py-3 text-admin-fg">{item.name}</td>
                           <td className="px-4 py-3 text-ember">{item.price}</td>
-                          <td className="px-4 py-3 text-smoke">{item.available ? "Yes" : "—"}</td>
-                          <td className="px-4 py-3 text-smoke">{item.featured ? "Yes" : "—"}</td>
+                          <td className="px-4 py-3 text-admin-fg/60">{item.available ? "Yes" : "—"}</td>
+                          <td className="px-4 py-3 text-admin-fg/60">{item.featured ? "Yes" : "—"}</td>
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2">
                               <Link
                                 href={`/admin/menu/items/${item.id}/edit`}
-                                className="rounded-[8px] border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[12.5px] font-semibold text-white/85 transition-colors hover:border-ember/40"
+                                className="rounded-[8px] border border-admin-fg/10 bg-admin-field px-3 py-1.5 text-[12.5px] font-semibold text-admin-fg/85 transition-colors hover:border-ember/40"
                               >
                                 Edit
                               </Link>

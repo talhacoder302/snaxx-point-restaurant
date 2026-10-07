@@ -17,7 +17,7 @@ export default async function EditOfferPage({
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-black text-white">Edit Offer</h1>
+      <h1 className="font-display text-2xl font-black text-admin-fg">Edit Offer</h1>
       <OfferForm
         action={updateOffer.bind(null, id)}
         offer={offer}
