@@ -7,6 +7,7 @@ export default function AdminNav() {
   const pathname = usePathname();
 
   const links = [
+    { href: "/admin/orders", label: "Orders", isActive: pathname.startsWith("/admin/orders") },
     { href: "/admin", label: "Offers", isActive: pathname === "/admin" || pathname.startsWith("/admin/offers") },
     { href: "/admin/menu", label: "Products", isActive: pathname.startsWith("/admin/menu") },
   ];

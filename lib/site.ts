@@ -10,6 +10,8 @@ export const site = {
    * Change this ONE value to update WhatsApp ordering across the entire website.
    */
   whatsappNumber: "923008505528",
+  /** Restaurant's local time zone — order times on the dashboard are shown in it. */
+  timeZone: "Asia/Karachi",
 } as const;
 
 export const navLinks = [

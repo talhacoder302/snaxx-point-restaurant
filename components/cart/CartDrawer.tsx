@@ -16,8 +16,11 @@ import CartIcon from "../icons/CartIcon";
 import CloseIcon from "../icons/CloseIcon";
 import MinusIcon from "../icons/MinusIcon";
 import PlusIcon from "../icons/PlusIcon";
+import ArrowBackIcon from "../icons/ArrowBackIcon";
 import WhatsAppIcon from "../icons/WhatsAppIcon";
-import { useCartUI } from "./CartProvider";
+import CheckoutForm from "./CheckoutForm";
+import OrderPlaced from "./OrderPlaced";
+import { useCartUI, type CartView } from "./CartProvider";
 
 /** Sum of price × quantity, or null if any item's price isn't a single number. */
 function computeTotal(items: CartItem[]): number | null {
@@ -30,11 +33,26 @@ function computeTotal(items: CartItem[]): number | null {
   return total;
 }
 
-export default function CartDrawer() {
+const VIEW_TITLES: Record<CartView["name"], string> = {
+  cart: "Your Order",
+  checkout: "Your Details",
+  placed: "Order Confirmed",
+};
+
+type CartDrawerProps = {
+  view: CartView;
+  onViewChange: (view: CartView) => void;
+};
+
+export default function CartDrawer({ view, onViewChange }: CartDrawerProps) {
   const { items, totalQuantity } = useCart();
   const total = computeTotal(items);
   const { isOpen, closeCart } = useCartUI();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  // If the cart empties mid-checkout (e.g. cleared in another tab), fall back to the cart view.
+  const activeView: CartView =
+    view.name === "checkout" && items.length === 0 ? { name: "cart" } : view;
 
   // Lock page scroll, close on Escape, and move focus into the drawer while open.
   useEffect(() => {
@@ -79,14 +97,26 @@ export default function CartDrawer() {
         }`}
       >
         <header className="flex items-center justify-between gap-4 border-b border-ink/[0.07] px-5 py-4 sm:px-6">
-          <h2 className="font-display text-xl font-black text-ink">
-            Your Order
-            {totalQuantity > 0 && (
-              <span className="ml-2 text-[13px] font-semibold text-smoke">
-                {totalQuantity} {totalQuantity === 1 ? "item" : "items"}
-              </span>
+          <div className="flex min-w-0 items-center gap-2.5">
+            {activeView.name === "checkout" && (
+              <button
+                type="button"
+                onClick={() => onViewChange({ name: "cart" })}
+                aria-label="Back to cart"
+                className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-ink/10 text-ink/70 transition-colors hover:border-ember/35 hover:text-ember"
+              >
+                <ArrowBackIcon className="h-5 w-5" />
+              </button>
             )}
-          </h2>
+            <h2 className="font-display text-xl font-black text-ink">
+              {VIEW_TITLES[activeView.name]}
+              {activeView.name === "cart" && totalQuantity > 0 && (
+                <span className="ml-2 text-[13px] font-semibold text-smoke">
+                  {totalQuantity} {totalQuantity === 1 ? "item" : "items"}
+                </span>
+              )}
+            </h2>
+          </div>
           <button
             ref={closeButtonRef}
             type="button"
@@ -98,14 +128,26 @@ export default function CartDrawer() {
           </button>
         </header>
 
-        {items.length === 0 ? (
+        {activeView.name === "placed" ? (
+          <OrderPlaced order={activeView.order} onDone={closeCart} />
+        ) : activeView.name === "checkout" ? (
+          <CheckoutForm
+            items={items}
+            totalQuantity={totalQuantity}
+            total={total}
+            onPlaced={(order) => {
+              clearCart();
+              onViewChange({ name: "placed", order });
+            }}
+          />
+        ) : items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
             <span className="grid h-16 w-16 place-items-center rounded-full bg-ember/[0.08] text-ember">
               <CartIcon className="h-8 w-8" />
             </span>
             <h3 className="mt-5 font-display text-xl font-black text-ink">Your cart is empty</h3>
             <p className="mt-2 max-w-[260px] text-[14px] leading-[1.7] text-smoke">
-              Add your favourites from the menu and send the whole order to us on WhatsApp.
+              Add your favourites from the menu, then order online or send it to us on WhatsApp.
             </p>
             <Link
               href="/menu"
@@ -190,13 +232,20 @@ export default function CartDrawer() {
                   </span>
                 </div>
               )}
+              <button
+                type="button"
+                onClick={() => onViewChange({ name: "checkout" })}
+                className="flex min-h-[50px] w-full items-center justify-center gap-2.5 rounded-[14px] bg-ember px-5 text-[14px] font-bold text-white shadow-[0_12px_30px_rgba(228,0,43,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-ember-dark"
+              >
+                Order Now
+              </button>
               <a
                 href={buildWhatsAppCartLink(items)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex min-h-[50px] items-center justify-center gap-2.5 rounded-[14px] bg-ember px-5 text-[14px] font-bold text-white shadow-[0_12px_30px_rgba(228,0,43,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-ember-dark"
+                className="group flex min-h-[48px] items-center justify-center gap-2.5 rounded-[14px] border border-ink/10 bg-white px-5 text-[13.5px] font-bold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1DA851]/40 hover:bg-[#1DA851]/[0.05]"
               >
-                <WhatsAppIcon circle className="h-4 w-4" circleClassName="h-7 w-7" />
+                <WhatsAppIcon className="h-4 w-4" />
                 Send Order on WhatsApp
               </a>
               <button

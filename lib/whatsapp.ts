@@ -33,3 +33,48 @@ export function buildWhatsAppCartLink(items: CartItem[]): string {
 
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
+
+/**
+ * Converts a customer's phone number as typed ("0300 1234567", "+92 300…")
+ * into WhatsApp's international digits-only format ("923001234567").
+ * Local Pakistani numbers starting with 0 get the 92 country code.
+ */
+export function toWhatsAppNumber(phone: string): string {
+  const digits = phone.replace(/\D/g, "");
+  if (digits.startsWith("00")) return digits.slice(2);
+  if (digits.startsWith("0")) return `92${digits.slice(1)}`;
+  return digits;
+}
+
+/** Opens a chat with a customer from the admin dashboard. */
+export function buildWhatsAppCustomerLink(phone: string, message: string): string {
+  return `https://wa.me/${toWhatsAppNumber(phone)}?text=${encodeURIComponent(message)}`;
+}
+
+type PlacedOrderSummary = {
+  reference: string;
+  customerName: string;
+  orderType: "delivery" | "pickup";
+  deliveryAddress: string | null;
+  items: { name: string; quantity: number }[];
+};
+
+/**
+ * Optional follow-up after an order is saved: lets the customer send the
+ * restaurant a WhatsApp message quoting the order reference for a faster
+ * confirmation. Like the cart message, it carries no prices.
+ */
+export function buildWhatsAppPlacedOrderLink(order: PlacedOrderSummary): string {
+  const lines = order.items.map((item) => `• ${item.name} × ${item.quantity}`);
+
+  const message = [
+    `Hello ${site.name} Restaurant, I just placed order *#${order.reference}* on your website.`,
+    lines.join("\n"),
+    order.orderType === "delivery"
+      ? `Name: ${order.customerName}\nDelivery to: ${order.deliveryAddress ?? ""}`
+      : `Name: ${order.customerName}\nI will pick it up.`,
+    "Please confirm. Thank you!",
+  ].join("\n\n");
+
+  return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
