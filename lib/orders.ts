@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import {
+  ACTIVE_ORDER_STATUSES,
   isOrderStatus,
   orderReference,
   type OrderLine,
@@ -61,32 +62,80 @@ function mapRow(row: OrderRow): Order {
   };
 }
 
-/** How many of the latest orders the dashboard loads — plenty for a day's service and its stats. */
-const RECENT_ORDERS_LIMIT = 300;
+const ORDER_COLUMNS =
+  "id, customer_name, phone, order_type, delivery_address, landmark, notes, items, total_items, subtotal, status, created_at, updated_at";
+
+/** Safety caps — far beyond a normal day's service, so nothing is silently dropped in practice. */
+const ACTIVE_ORDERS_LIMIT = 500;
+const RECENT_ORDERS_LIMIT = 2000;
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+function isMissingTable(error: { code?: string } | null): boolean {
+  return !!error && (error.code === "42P01" || error.code === "PGRST205");
+}
 
 /**
- * Fetches the most recent orders, newest first. `setupNeeded` is true when
- * the orders table doesn't exist yet (supabase/create-orders-table.sql
- * hasn't been run), so the dashboard can say so instead of looking empty.
+ * Fetches the orders the dashboard needs, newest first: every active order
+ * (new → ready) whatever its date — so nothing still in progress is ever
+ * hidden — plus all orders from roughly the last `days` days. The page trims
+ * the latter to whole calendar days in the restaurant's time zone.
+ *
+ * `setupNeeded` is true when the orders table doesn't exist yet
+ * (supabase/create-orders-table.sql hasn't been run), so the dashboard can
+ * say so instead of looking empty.
  */
-export async function getRecentOrders(): Promise<{ orders: Order[]; setupNeeded: boolean }> {
+export async function getDashboardOrders(
+  days: number
+): Promise<{ orders: Order[]; setupNeeded: boolean }> {
   const supabase = await createClient();
+  // One extra day of margin; the caller filters by calendar day.
+  const since = new Date(Date.now() - (days + 1) * DAY_MS).toISOString();
 
-  const { data, error } = await supabase
-    .from("orders")
-    .select(
-      "id, customer_name, phone, order_type, delivery_address, landmark, notes, items, total_items, subtotal, status, created_at, updated_at"
-    )
-    .order("created_at", { ascending: false })
-    .limit(RECENT_ORDERS_LIMIT);
+  const [active, recent] = await Promise.all([
+    supabase
+      .from("orders")
+      .select(ORDER_COLUMNS)
+      .in("status", [...ACTIVE_ORDER_STATUSES])
+      .order("created_at", { ascending: false })
+      .limit(ACTIVE_ORDERS_LIMIT),
+    supabase
+      .from("orders")
+      .select(ORDER_COLUMNS)
+      .gte("created_at", since)
+      .order("created_at", { ascending: false })
+      .limit(RECENT_ORDERS_LIMIT),
+  ]);
 
+  const error = active.error ?? recent.error;
   if (error) {
-    const setupNeeded = error.code === "42P01" || error.code === "PGRST205";
+    const setupNeeded = isMissingTable(error);
     if (!setupNeeded) console.error("Failed to fetch orders:", error.message);
     return { orders: [], setupNeeded };
   }
 
-  return { orders: ((data ?? []) as OrderRow[]).map(mapRow), setupNeeded: false };
+  const byId = new Map<string, Order>();
+  for (const row of [...(active.data ?? []), ...(recent.data ?? [])] as OrderRow[]) {
+    byId.set(row.id, mapRow(row));
+  }
+  const orders = [...byId.values()].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+
+  return { orders, setupNeeded: false };
+}
+
+/** Number of orders waiting for confirmation — for the Orders badge on every admin page. */
+export async function getNewOrderCount(): Promise<number> {
+  const supabase = await createClient();
+  const { count, error } = await supabase
+    .from("orders")
+    .select("id", { count: "exact", head: true })
+    .eq("status", "pending");
+
+  if (error) {
+    if (!isMissingTable(error)) console.error("Failed to count new orders:", error.message);
+    return 0;
+  }
+  return count ?? 0;
 }
 
 // ---------- Time helpers (always in the restaurant's time zone) ----------

@@ -14,9 +14,11 @@ import { ORDER_STATUS_BADGE } from "./orderStatusStyles";
 type OrderCardProps = {
   order: Order;
   now: Date;
+  /** Opened from a new-order alert — outlined so it's easy to spot. */
+  highlighted?: boolean;
 };
 
-export default function OrderCard({ order, now }: OrderCardProps) {
+export default function OrderCard({ order, now, highlighted = false }: OrderCardProps) {
   const createdAt = new Date(order.createdAt);
   const isNew = order.status === "pending";
   const isClosed = order.status === "completed" || order.status === "cancelled";
@@ -30,7 +32,10 @@ export default function OrderCard({ order, now }: OrderCardProps) {
 
   return (
     <article
-      className={`relative flex flex-col overflow-hidden rounded-[18px] border bg-admin-surface transition-colors ${
+      id={`order-${order.id}`}
+      className={`relative flex scroll-mt-6 flex-col overflow-hidden rounded-[18px] border bg-admin-surface transition-colors ${
+        highlighted ? "ring-2 ring-ember ring-offset-2 ring-offset-admin-bg" : ""
+      } ${
         isNew
           ? "border-ember/40 shadow-[0_0_0_1px_rgba(228,0,43,0.15),0_18px_50px_rgba(228,0,43,0.12)]"
           : "border-admin-fg/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:border-admin-fg/[0.14] dark:shadow-none"

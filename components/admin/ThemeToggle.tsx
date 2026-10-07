@@ -2,11 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { ADMIN_THEME_COOKIE, type AdminTheme } from "@/lib/admin-theme-cookie";
+import { ADMIN_THEME_COOKIE, setAdminCookie, type AdminTheme } from "@/lib/admin-cookies";
 import DarkModeIcon from "../icons/DarkModeIcon";
 import LightModeIcon from "../icons/LightModeIcon";
-
-const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
 
 /** Switches the admin area between light and dark, remembering the choice in a cookie. */
 export default function ThemeToggle({ initialTheme }: { initialTheme: AdminTheme }) {
@@ -18,7 +16,7 @@ export default function ThemeToggle({ initialTheme }: { initialTheme: AdminTheme
     const next: AdminTheme = theme === "dark" ? "light" : "dark";
     setTheme(next);
 
-    document.cookie = `${ADMIN_THEME_COOKIE}=${next}; path=/admin; max-age=${ONE_YEAR_SECONDS}; samesite=lax`;
+    setAdminCookie(ADMIN_THEME_COOKIE, next);
     // Switch instantly, then let the server re-render so its markup agrees.
     document.querySelector("[data-admin-theme]")?.setAttribute("data-admin-theme", next);
     startTransition(() => router.refresh());

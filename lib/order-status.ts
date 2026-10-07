@@ -58,3 +58,10 @@ export function formatPhone(phone: string): string {
   const match = phone.match(/^\+92(3\d{2})(\d{7})$/);
   return match ? `0${match[1]} ${match[2]}` : phone;
 }
+
+/** Orders that still need work — always shown on the dashboard, whatever their date. */
+export const ACTIVE_ORDER_STATUSES = ["pending", "confirmed", "preparing", "ready"] as const satisfies readonly OrderStatus[];
+
+export function isActiveStatus(status: OrderStatus): boolean {
+  return (ACTIVE_ORDER_STATUSES as readonly string[]).includes(status);
+}

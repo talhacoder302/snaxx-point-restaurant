@@ -14,6 +14,8 @@ type OrderStatusControlProps = {
   orderId: string;
   status: OrderStatus;
   orderType: OrderType;
+  /** Smaller controls for the Orders page's compact list view. */
+  compact?: boolean;
 };
 
 /** The one-click "move it along" action for each stage of an order. */
@@ -35,7 +37,12 @@ function nextStep(status: OrderStatus, orderType: OrderType): { status: OrderSta
   }
 }
 
-export default function OrderStatusControl({ orderId, status, orderType }: OrderStatusControlProps) {
+export default function OrderStatusControl({
+  orderId,
+  status,
+  orderType,
+  compact = false,
+}: OrderStatusControlProps) {
   const [optimisticStatus, setOptimisticStatus] = useOptimistic(status);
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
@@ -56,25 +63,29 @@ export default function OrderStatusControl({ orderId, status, orderType }: Order
 
   return (
     <div>
-      <div className="flex flex-wrap items-center gap-2">
+      <div className={`flex items-center gap-2 ${compact ? "justify-end" : "flex-wrap"}`}>
         {step && (
           <button
             type="button"
             onClick={() => changeStatus(step.status)}
             disabled={pending}
-            className="flex-1 rounded-[10px] bg-gradient-to-br from-ember-light to-ember-dark px-4 py-2.5 text-[13px] font-bold text-white shadow-[0_8px_20px_rgba(228,0,43,0.25)] transition-all hover:brightness-110 disabled:opacity-60"
+            className={`rounded-[10px] bg-gradient-to-br from-ember-light to-ember-dark font-bold ${
+              compact ? "whitespace-nowrap px-3 py-1.5 text-[12px]" : "flex-1 px-4 py-2.5 text-[13px]"
+            } text-white shadow-[0_8px_20px_rgba(228,0,43,0.25)] transition-all hover:brightness-110 disabled:opacity-60`}
           >
             {pending ? "Updating…" : step.label}
           </button>
         )}
 
-        <label className={`relative ${step ? "" : "flex-1"}`}>
+        <label className={`relative ${compact ? "w-[148px] shrink-0" : step ? "" : "flex-1"}`}>
           <span className="sr-only">Change order status</span>
           <select
             value={optimisticStatus}
             onChange={(event) => changeStatus(event.target.value as OrderStatus)}
             disabled={pending}
-            className="w-full appearance-none rounded-[10px] border border-admin-fg/10 bg-admin-field py-2.5 pl-3.5 pr-9 text-[13px] font-semibold text-admin-fg/85 outline-none transition-colors hover:border-admin-fg/20 focus:border-ember/50 disabled:opacity-60"
+            className={`w-full appearance-none rounded-[10px] border border-admin-fg/10 bg-admin-field font-semibold ${
+              compact ? "py-1.5 pl-2.5 pr-8 text-[12px]" : "py-2.5 pl-3.5 pr-9 text-[13px]"
+            } text-admin-fg/85 outline-none transition-colors hover:border-admin-fg/20 focus:border-ember/50 disabled:opacity-60`}
           >
             {ORDER_STATUSES.map((value) => (
               <option key={value} value={value} className="bg-admin-bg text-admin-fg">
